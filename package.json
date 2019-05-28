@@ -6,10 +6,11 @@
     "axios": "^0.18.0",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
+    "concurrently": "^4.1.0",
     "cors": "^2.8.5",
-    "express": "^4.17.0",
+    "express": "^4.17.1",
     "mongodb": "^3.2.5",
-    "mongoose": "^5.5.9",
+    "mongoose": "^5.5.11",
     "morgan": "^1.9.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -37,5 +38,19 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3001",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joehill27/ContactManager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joehill27/ContactManager/issues"
+  },
+  "homepage": "https://github.com/Joehill27/ContactManager#readme"
 }
