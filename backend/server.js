@@ -82,7 +82,8 @@ router.post("/putData", (req, res) => {
   });
 });
 
-contactRoutes.route('/').get(function(req, res) {
+// Retrieves table of contacts for a specified userID
+Router.route('/:userID/').get(function(req, res) {
   Contact.find(function(err, contacts) {
       if(err) {
           console.log(err)
@@ -92,14 +93,16 @@ contactRoutes.route('/').get(function(req, res) {
   });
 });
 
-contactRoutes.route('/:contactID').get(function(req, res) {
+// Finds a specific contact from the table (userID) based on contactID
+Router.route('/:userID/:contactID').get(function(req, res) {
   let id = req.params.id;
   Contact.findById(id, function(err, contact) {
       res.json(contact);
   });
 });
 
-contactRoutes.route('/add').post(function(req, res) {
+// Adds a contact to the specified userID's table
+Router.route('/:userID/add').post(function(req, res) {
   let contact = new Contact(req.body);
   contact.save()
       .then(contact => {
@@ -110,7 +113,8 @@ contactRoutes.route('/add').post(function(req, res) {
       });
 });
 
-contactRoutes.route('/update/:contactID').post(function(req, res) {
+// Updates a specified contact in the userID's specified table
+Router.route('/:userID/update/:contactID').post(function(req, res) {
   Contact.findById(req.params.id, function(err, contact) {
       if(!contact) {
           res.status(404).send("data is not found");
