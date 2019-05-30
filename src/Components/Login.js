@@ -38,10 +38,8 @@ class Login extends Component {
 
     // Here we need to axios.get() the database password hash
 
-    //bcrypt.compare(this.state.password, dbHash).then(function(res)
-    //{
-      // check if res is yes or no and handle accordingly
-    //});
+    const dbHash = "sss";
+    console.log(encryptor.Compare(this.state.password, dbHash));
 
     // axios.post()
   }
