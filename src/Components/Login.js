@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+const bcrypt = require('bcryptjs');
+
+const encryptor = require('./PasswordEncryptor');
 
 class Login extends Component {
 
@@ -25,11 +28,20 @@ class Login extends Component {
     });
   }
 
+
+  // TODO
   handleSubmit(e) {
     e.preventDefault();
 
     console.log('The form was sent with data:');
     console.log(this.state);
+
+    // Here we need to axios.get() the database password hash
+
+    //bcrypt.compare(this.state.password, dbHash).then(function(res)
+    //{
+      // check if res is yes or no and handle accordingly
+    //});
 
     // axios.post()
   }

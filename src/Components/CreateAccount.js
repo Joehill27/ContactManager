@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+const encryptor = require('./PasswordEncryptor');
+
 class CreateAccount extends Component {
 
   constructor() {
@@ -32,6 +34,14 @@ class CreateAccount extends Component {
     console.log('The form was sent with data:');
     console.log(this.state);
 
+    const salt = 10;
+    //const salt = encryptor.Salt(10);
+    //console.log("salt: ");
+    //console.log(salt);
+    //console.log("\n");
+    console.log("encryption: ");
+    console.log(encryptor.Encrypt(this.state.password, salt));
+    
     // axios.post()
   }
 
