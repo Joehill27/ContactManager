@@ -3,9 +3,9 @@ const express = require('express');
 var cors = require("cors");
 const bodyParser = require('body-parser');
 const logger = require('morgan');
-const Data = require('./data');
 const Contact = require('./contact.model');
 const path = require('path');
+const User = require('./user.model');
 
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'));
@@ -41,6 +41,39 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger("dev"));
+
+
+router.route('/login/').get(function(req, res) {
+    let username = req.param.username;
+    User.findOne({username: new RegExp('^'+username+'$', "i")}, function(err, user) {
+    if(!user) {
+        res.status(404).send("User does not exist");
+    } else {
+        res.json(user);
+    }
+    });
+});
+
+router.route('/createaccount/').post(function(req, res) {
+    let username = req.param.username;
+    let email = req.param.email;
+    let password = req.param.password;
+
+    User.findOne({username: new RegExp('^'+username+'$', "i")}, function(err, user) {
+        if(!user) {
+            let newUser = new User(req.body);
+            // newUser.username = username;
+            // newUser.email = email;
+            // newUser.password = password;
+            newUser.save()
+            .then(newUser => {
+                releaseEvents.status(200).json({'user': 'New account created successfully'});
+            })
+        } else {
+            res.status(404).send("Account with that username already exists");
+        }
+    });
+});
 
 
 
