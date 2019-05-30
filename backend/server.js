@@ -5,6 +5,15 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const Data = require('./data');
 const Contact = require('./contact.model');
+const path = require('path');
+
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
 
 const API_PORT = 3001;
 const app = express();
