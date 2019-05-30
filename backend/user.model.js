@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let Contact = new Schema({
-    id: {
-        type: String
-    },
     email: {
         type: String
     },
