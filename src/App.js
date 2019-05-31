@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import Login from "./Components/Login";
 import CreateAccount from "./Components/CreateAccount";
 
+axios.defaults.headers.post['Access-Control-Allow-Methods'] = 'PATCH, DELETE, POST, GET, OPTIONS';
+
 class App extends Component {
 
   // here is our UI
