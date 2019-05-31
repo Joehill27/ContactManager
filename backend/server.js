@@ -42,10 +42,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger("dev"));
 
-
 router.route('/login/').get(function(req, res) {
-    let username = req.param.username;
-    User.findOne({username: new RegExp('^'+username+'$', "i")}, function(err, user) {
+    let name = req.body.username;
+    User.findOne({username: name}).exec(function(err, user) {
     if(!user) {
         res.status(404).send("User does not exist");
     } else {
@@ -55,19 +54,14 @@ router.route('/login/').get(function(req, res) {
 });
 
 router.route('/createaccount/').post(function(req, res) {
-    let username = req.param.username;
-    let email = req.param.email;
-    let password = req.param.password;
+    let username = req.body.username;
 
-    User.findOne({username: new RegExp('^'+username+'$', "i")}, function(err, user) {
+    User.findOne({'username': username}).exec(function(err, user) {
         if(!user) {
             let newUser = new User(req.body);
-            // newUser.username = username;
-            // newUser.email = email;
-            // newUser.password = password;
             newUser.save()
             .then(newUser => {
-                releaseEvents.status(200).json({'user': 'New account created successfully'});
+                res.status(200).json({'user': 'New account created successfully' + newUser});
             })
         } else {
             res.status(404).send("Account with that username already exists");
@@ -78,8 +72,9 @@ router.route('/createaccount/').post(function(req, res) {
 
 
 // Retrieves table of contacts for a specified userID
-router.route('/:userID/').get(function(req, res) {
-  Contact.find(function(err, contacts) {
+router.route('/getContacts/').get(function(req, res) {
+    let username = req.body.username;
+  Contact.find({'username': username}).exec(function(err, contacts) {
       if(err) {
           console.log(err)
       } else {
@@ -89,49 +84,59 @@ router.route('/:userID/').get(function(req, res) {
 });
 
 // Finds a specific contact from the table (userID) based on contactID
-router.route('/:userID/:contactID').get(function(req, res) {
-  let id = req.params.id;
-  Contact.findById(id, function(err, contact) {
+router.route('/getContact/').get(function(req, res) {
+    let contact_name = req.body.contact_name;
+  Contact.find({'contact_name': contact_name}).exec(function(err, contact) {
       res.json(contact);
   });
 });
 
 // Adds a contact to the specified userID's table
-router.route('/:userID/add').post(function(req, res) {
+router.route('/addContact/').post(function(req, res) {
   let contact = new Contact(req.body);
   contact.save()
       .then(contact => {
-          releaseEvents.status(200).json({'contact': 'contact added successfully'});
+          releaseEvents.status(200).json({'Contact added successfully': contact});
       })
       .catch(err => {
-          res.status(400).send('adding new contact failed');
+          res.status(400).send('Adding new contact failed');
       });
 });
 
 // Updates a specified contact in the userID's specified table
-router.route('/:userID/update/:contactID').post(function(req, res) {
-  Contact.findById(req.params.id, function(err, contact) {
+router.route('/editContact/').post(function(req, res) {
+  Contact.findOne({'contact_name': contact_name}).exec(function(err, contact) {
       if(!contact) {
-          res.status(404).send("data is not found");
+          res.status(404).send("contact is not found");
       } else {
           contact.contact_name = req.body.contact_name;
           contact.contact_phone = req.body.contact_phone;
           contact.contact_email = req.body.contact_email;
 
           contact.save().then(contact => {
-              res.json('contact updated');
+              res.json('Contact updated');
           })
           .catch(err => {
-              res.status(400).send("update not possible");
+              res.status(400).send("Can not update contact");
           });
       }
   });
 });
 
+//Deletes a specified contact
+router.route('/removeContact/').delete(function(req, res) {
+    let contact_name = req.body.contact_name
+    Contact.findOneAndDelete({'contact_name': contact_name}).exec(function(err, contact){
+        if(!contact){
+            res.status(404).send("Contact is not found");
+        } else{
+            res.status(200).send({'Contact removed' : contact});
+        }
+    });
+});
 
 // append /api for our http requests
 app.use("/api", router);
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
-
