@@ -15,4 +15,4 @@ let User = new Schema({
     contacts : [ContactSchema]
 });
 
-module.exports = mongoose.model('User', User);
+module.exports = User;
