@@ -15,7 +15,7 @@ if(process.env.NODE_ENV === 'production'){
     });
 }
 
-const API_PORT = 3001;
+const API_PORT = proces.env.port;
 const app = express();
 app.use(cors());
 const router = express.Router();
