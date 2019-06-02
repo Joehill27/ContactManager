@@ -58,7 +58,7 @@ router.route('/login/').get(function(req, res) {
     });
 });
 
-router.route('/createaccount/').post(function(req, res) {
+router.route('/createAccount/').post(function(req, res) {
     let username = req.body.username;
 
     User.findOne({'username': username}).exec(function(err, user) {
@@ -74,7 +74,18 @@ router.route('/createaccount/').post(function(req, res) {
     });
 });
 
+router.route('/deleteAccount/:userId').delete(function(req, res) {
+    let userId = req.params.usedId;
 
+    User.findOneAndDelete({id: userId}, function(err, user) {
+        if(!user) {
+            res.status(404).send('user not found' + err);
+        }
+        else {
+            res.status(200).send({'user deleted': user});
+        }
+    })
+})
 
 // Retrieves table of contacts for a specified userID
 router.route('/:userId/getContacts/').get(function(req, res) {
@@ -104,49 +115,58 @@ router.route('/:userId/getContact/:contactId').get(function(req, res) {
 // Adds a contact to the specified userID's table
 router.route('/:userId/addContact/').post(function(req, res) {
     let userId = req.params.userId;
-    let contact = new Contact(req.body);
+    var contact = {
+        _id: mongoose.Types.ObjectId(),
+        "contact_name": req.body.contact_name,
+        "contact_email": req.body.contact_email,
+        "contact_phone": req.body.contact_phone
+    };
 
-    User.update({'id': userId}, {$push: {contacts: contact}}).exec(function(err, sucess){
+    User.update(
+        { _id: userId }, 
+        { $push: { contacts: contact }}
+    ).exec(function(err) {
         if(err){
-            res.status(400).send('Updating contact failed');
+            res.status(404).send('Can not update contact');
         } else {
-            res.status(200).json({'Contact added successfully': contact});
-        }
-    });  
-});
-
-// Updates a specified contact in the userID's specified table
-router.route('/:userId/editContact/:contactId').post(function(req, res) {
-    let contactId = req.body.contactId;
-    let userId = req.params.userId;
-    
-    User.findOne({'id': userId}, {'id': contactId}).exec(function(err, contact) {
-        if(!contact) {
-            res.status(404).send("contact is not found");
-        } else {
-            contact.contact_name = req.body.contact_name;
-            contact.contact_phone = req.body.contact_phone;
-            contact.contact_email = req.body.contact_email;
-
-            contact.save().then(contact => {
-                res.status.send({'contact updated': contact});
-            })
-            .catch(err => {
-                res.status(400).send("Can not update contact");
-            });
+            res.status(200).send({'contact created successfully' : contact});
         }
     });
 });
 
-//Deletes a specified contact
-router.route('/:userId/removeContact/:contactId').delete(function(req, res) {
+// Updates a specified contact in the userID's specified table
+router.route('/:userId/updateContact/:contactId').put(function(req, res) {
     let contactId = req.params.contactId;
-    Contact.findOneAndDelete({'id': contactId}).exec(function(err, contact){
-        if(!contact){
-            res.status(404).send("contact is not found");
-        } else{
-            res.status(200).send({'contact removed' : contact});
+    let userId = req.params.userId;
+    
+    User.findById(userId, function(err, user){
+        var contact = user.contacts.id(contactId);
+
+        contact.set(req.body);
+
+        user.save()
+        .then(
+            res.status(200).send({'Contact updated': contact})
+        ).catch(function(err) {
+            res.status(404).send('Unable to update contact');
+        });
+    });
+});
+
+//Deletes a specified contact
+router.route('/:userId/deleteContact/:contactId').delete(function(req, res) {
+    let contactId = req.params.contactId;
+    let userId = req.params.userId;
+
+    User.findById(userId, function(err, user) {
+        if(err) {
+            res.status(404).send('can not find user');
         }
+        user.contacts.pull(contactId);
+        user.save()
+        .then(
+            res.status(200).send('contact deleted')
+        );
     });
 });
 

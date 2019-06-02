@@ -10,7 +10,8 @@ let Contact = new Schema({
     },
     contact_email: {
         type: String
-    }
+    },
+    approved : Boolean
 });
 
 module.exports = Contact;
