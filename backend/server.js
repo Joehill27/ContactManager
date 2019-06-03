@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
-
 var cors = require("cors");
 const bodyParser = require('body-parser');
 const logger = require('morgan');
-const ContactSchema = require('./contact.model');
+const ContactSchema = require('../model/contact.model');
 const path = require('path');
-const UserSchema = require('./user.model');
+const UserSchema = require('../model/user.model');
 
 const User = mongoose.model('User', UserSchema);
 const Contact = mongoose.model('Contact', ContactSchema);
@@ -15,7 +14,7 @@ app = express(),
 server = require('http').createServer(app);
 
 
-const API_PORT = 3001;
+const API_PORT = process.env.PORT || 3001;
 app.use(cors());
 const router = express.Router();
 
