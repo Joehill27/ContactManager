@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const encryptor = require('./PasswordEncryptor');
 
@@ -15,7 +16,7 @@ class CreateAccount extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -40,13 +41,33 @@ class CreateAccount extends Component {
     //console.log(salt);
     //console.log("\n");
     console.log("encryption: ");
-    console.log(encryptor.Encrypt(this.state.password, salt));
-    
-    // axios.post()
+
+    var hashedPassword = encryptor.Encrypt(this.state.password, salt);
+    console.log(hashedPassword);
+
   }
 
-
   render() {
+
+    const {email, username, password} = this.state;
+
+    const createAccount = async => {  
+      const salt = 10;
+  
+      this.password = encryptor.Encrypt(password, salt);
+      // console.log(hashedPassword);
+  
+      var user = {
+        "username": username,
+        "email": email,
+        "password": password
+      };
+  
+       axios.post('https://localhost:3001/api/createAccount/', {user})
+        .then(res => {
+          console.log('Created account!'+res);
+        });
+    }
 
       return(
         <div className="FormCenter">
@@ -70,10 +91,8 @@ class CreateAccount extends Component {
             value={this.state.email} onChange={this.handleChange} />
           </div>
           {/* Create Account Button */}
-          <div className="FormField">
             <button className="FormField__Button mr-20">Create Account</button>
             <Link to="/login" className="FormField__Link">I already have an account</Link>
-          </div>
           
         </form>
       </div>
