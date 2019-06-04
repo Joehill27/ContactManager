@@ -51,10 +51,12 @@ class Login extends Component {
       passwordCheck.then(function(result)
       { 
         console.log(result)
+        if(result) this.props.history.push('/contactList');
       });
     });
 
-    this.props.history.push('/contactList');
+    // axios.post('http://localhost:3001/api/user/login', this.state)
+    // .then(res => console.log(res.status));
 
     var dbHash = "ss";
   }
