@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 // const bcrypt = require('bcryptjs');
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
-import ContactList from "./ContactList.component";
-
+import Router from './router';
 const encryptor = require('./PasswordEncryptor');
 
 class Login extends Component {
@@ -34,19 +32,19 @@ class Login extends Component {
 
   // TODO
   handleSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
 
-    console.log('The form was sent with data:');
-    console.log(this.state);
+    // console.log('The form was sent with data:');
+    // console.log(this.state);
 
-    // Here we need to axios.get() the database password hash
+    // // Here we need to axios.get() the database password hash
 
-    axios.post('http://localhost:3001/api/user/login', this.state)
-    .then(res => console.log(res), 
-      this.props.history.push('/contactList'));
+    // axios.post('http://localhost:3001/api/user/login', this.state)
+    // .then(res => console.log(res));
+    this.props.history.push('/contactList');
 
-    const dbHash = "sss";
-    console.log(encryptor.compare(this.state.password, dbHash));
+    // const dbHash = "sss";
+    // console.log(encryptor.compare(this.state.password, dbHash));
 
     
   }
@@ -54,7 +52,6 @@ class Login extends Component {
   render() {
 
     return (
-      <Router>
       <div className="FormCenter">
         <form onSubmit={this.handleSubmit} className="FormFields">
           {/* Usermane */}
@@ -76,10 +73,6 @@ class Login extends Component {
           </div>
         </form>
       </div>
-      <Route path ="/contactList" component={ContactList} />
-
-
-      </Router>
     );
   }
 }

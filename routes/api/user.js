@@ -30,7 +30,7 @@ router.post('/createAccount', (req, res) => {
                 res.status(200).json({'user': newUser});
             })
         } else {
-            res.status(404).send("Account with that username already exists");
+            res.status(400).send("Account with that username already exists");
         }
     });
 });

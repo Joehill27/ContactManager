@@ -43,7 +43,7 @@ class CreateAccount extends Component {
     //console.log(salt);
     //console.log("\n");
     console.log("encryption: ");
-    console.log(encryptor.Encrypt(this.state.password, salt));
+    console.log(encryptor.encrpyt(this.state.password, salt));
     
     axios.post('http://localhost:3001/api/user/createAccount', this.state)
       .then(res => console.log(res));

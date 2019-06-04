@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
+
+import CreateNew from "./CreateContact";
+import EditContact from "./EditContact";
 
 const Contact = props => (
     <tr>
@@ -12,18 +15,17 @@ const Contact = props => (
             <Link to={"/edit/"+props.contact._id}>Edit</Link>
         </td>
     </tr>
-)
+);
 
-export default class ContactList extends Component {
-    constructor(props)
-    {
+class ContactList extends Component {
+    constructor(props) {
         super(props);
         this.state = {contacts: []};
     }
 
     componentDidMount()
     {
-        axios.get('http://localhost:3000/contacts/')
+        axios.get('http://localhost:3001/contacts/')
             .then(response => {
                 this.setState({ contacts: response.data});
             })
@@ -43,22 +45,23 @@ export default class ContactList extends Component {
     {
         return (
             <div>
-                <h3>Contacts List</h3>
-                <table className="table table-striped" style={{ marginTop: 20 }}>
-                    <thead>
-                        <tr>
-                            <th color="#FFFFFF"><font color="#FFFFFF">Name</font></th>
-                            <th color="#FFFFFF"><font color="#FFFFFF">Number</font></th>
-                            <th color="#FFFFFF"><font color="#FFFFFF">Email</font></th>
-                            <th color="#FFFFFF"><font color="#FFFFFF">Action</font></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.contactList() }
-                    </tbody>
-                </table>
-                        
-            </div>
-        )
+
+    
+        <div className="App__Aside">		
+        </div>
+		
+
+        <div className="App__Form">
+         
+                <label><font size="6">Contact Manager</font></label>
+          	    <div className="PageSwitcher">
+            		<NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
+            		<NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
+          		</div>	
+        </div>
+        </div>
+        );
     }
 }
+
+export default ContactList;
