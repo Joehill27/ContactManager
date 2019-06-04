@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const ContactSchema = require('./contact.model');
+const ContactSchema = require('./Contact');
 
-let User = new Schema({
+let UserSchema = new Schema({
     email: {
         type: String
     },
@@ -15,4 +15,4 @@ let User = new Schema({
     contacts : [ContactSchema]
 });
 
-module.exports = User;
+module.exports = User = mongoose.model('user', UserSchema);

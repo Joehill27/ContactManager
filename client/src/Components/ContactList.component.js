@@ -23,7 +23,7 @@ export default class ContactsList extends Component {
 
     componentDidMount()
     {
-        axios.get('http://localhost:3000/contacts/')
+        axios.get('http://localhost:3001/contacts/')
             .then(response => {
                 this.setState({ contacts: response.data});
             })

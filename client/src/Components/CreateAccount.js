@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+// const bcrypt = require('bcryptjs');
+
 
 const encryptor = require('./PasswordEncryptor');
 
@@ -42,14 +45,14 @@ class CreateAccount extends Component {
     console.log("encryption: ");
     console.log(encryptor.Encrypt(this.state.password, salt));
     
-    // axios.post()
+    axios.post('http://localhost:3001/api/user/createAccount', this.state)
+      .then(res => console.log(res));
   }
 
 
   render() {
-
-      return(
-        <div className="FormCenter">
+    return (
+      <div className="FormCenter">
         <form className="FormFields" onSubmit={this.handleSubmit}>
           {/* Usermane */}
           <div className="FormField">
