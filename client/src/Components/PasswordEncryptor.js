@@ -15,8 +15,10 @@ module.exports =
         return salt;
     },*/
 
-    Encrypt: async function (password, salt)
+
+    Encrypt: async function (password)
     {
+        const salt = bcrypt.genSaltSync(10);
         const hashedPassword = await new Promise((resolve, reject) =>
         {
             bcrypt.hash(password, salt, function(err, hash)
