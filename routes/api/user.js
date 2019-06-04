@@ -5,7 +5,7 @@ const User = require('../../models/User');
 
 
 //Checks if a user exists by username, if they do checks password
-router.post('/login/', (req, res) => {
+router.post('/login', (req, res) => {
     let name = req.body.username;
     User.findOne({username: name}).exec(function(err, user) {
     if(!user) {
@@ -13,13 +13,13 @@ router.post('/login/', (req, res) => {
     } else if(user.password === req.body.password) {
         res.status(200).send({'successful login': user});
     } else {
-        res.status(400).send('unsuccessful login attempt');
+        res.status(400).send('incorrect username or password');
     }
     });
 });
 
 //Creates an account with given info
-router.post('/createAccount/', (req, res) => {
+router.post('/createAccount', (req, res) => {
     let username = req.body.username;
 
     User.findOne({'username': username}).exec(function(err, user) {

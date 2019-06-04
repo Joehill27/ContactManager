@@ -3,9 +3,11 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const users = require('./routes/api/user');
 const contacts = require('./routes/api/contact');
+const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 const dbURI = require('./config/keys').mongoURI;
 

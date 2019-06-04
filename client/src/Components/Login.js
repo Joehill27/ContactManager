@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-const bcrypt = require('bcryptjs');
+import axios from 'axios';
+// const bcrypt = require('bcryptjs');
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import ContactList from "./ContactList.component";
 
-// const encryptor = require('./PasswordEncryptor');
+const encryptor = require('./PasswordEncryptor');
 
 class Login extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       username: '',
@@ -38,15 +41,20 @@ class Login extends Component {
 
     // Here we need to axios.get() the database password hash
 
-    const dbHash = "sss";
-    // console.log(encryptor.Compare(this.state.password, dbHash));
+    axios.post('http://localhost:3001/api/user/login', this.state)
+    .then(res => console.log(res), 
+      this.props.history.push('/contactList'));
 
-    // axios.post()
+    const dbHash = "sss";
+    console.log(encryptor.compare(this.state.password, dbHash));
+
+    
   }
 
   render() {
 
     return (
+      <Router>
       <div className="FormCenter">
         <form onSubmit={this.handleSubmit} className="FormFields">
           {/* Usermane */}
@@ -64,10 +72,14 @@ class Login extends Component {
           {/* Login Button */}
           <div className="FormField">
             <button className="FormField__Button mr-20">Login</button>
-            <Link exact to="/" className="FormField__Link">Create an account</Link>
+            <Link  to="/" className="FormField__Link">Create an account</Link>
           </div>
         </form>
       </div>
+      <Route path ="/contactList" component={ContactList} />
+
+
+      </Router>
     );
   }
 }
