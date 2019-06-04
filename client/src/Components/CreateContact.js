@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-//import logo from './Contacts.png';
+// import logo from './Contacts.png';
 
-//console.log(logo);
+// console.log(logo);
 
 export default class CreateNew extends Component {
     constructor(props)
