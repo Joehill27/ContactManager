@@ -1,11 +1,7 @@
 // const bcrypt = require('bcryptjs');
 
-// module.exports = class PasswordEncryptor
+// class PasswordEncryptor
 // {
-//     plaintextPassword;
-//     saltRounds;
-//     salt;
-
 //     PasswordEncryptor(plaintextPassword, saltRounds)
 //     {
 //         this.plaintextPassword = plaintextPassword;
@@ -17,14 +13,14 @@
 //     {
 //         const hashedPassword = await new Promise((resolve, reject) =>
 //         {
-//             bcrypt.genSalt(saltRounds, function(err, salt)
+//             bcrypt.genSalt(this.saltRounds, function(err, salt)
 //             {
 //                 bcrypt.hash(this.plaintextPassword, salt, function(err, hash)
 //                 {
 //                     if(err) reject(err)
 //                     resolve(hash)
 
-//                     Salt = salt;
+//                     this.Salt = salt;
 //                 });
 //             });
 //         })
@@ -36,7 +32,7 @@
 //     async Encrypt() {
 //         const hashedPassword = await new Promise((resolve, reject) =>
 //         {
-//             bcrypt.hash(this.plaintextPassword, saltRounds, function(err, hash)
+//             bcrypt.hash(this.plaintextPassword, this.saltRounds, function(err, hash)
 //             {
 //                 if(err) reject(err)
 //                 resolve(hash)
@@ -61,4 +57,4 @@
 //     };
 // };
 
-// exports = {EncryptSaveSalt, Encrypt, Compare};
+// module.exports = {EncryptSaveSalt, Encrypt, Compare};

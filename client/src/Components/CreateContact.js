@@ -54,7 +54,10 @@ export default class CreateNew extends Component {
             contact_email: this.state.contact_email
         }
 
-        axios.post('http://localhost:3000/contacts/add', newContact)
+        //TODO get userID from somewhere......
+        var userId;
+
+        axios.post('http://localhost:3001/contact/' + userId + '/addContact/', newContact)
             .then(res => console.log(res.data));
         
         this.setState({
