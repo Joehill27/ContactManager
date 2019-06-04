@@ -14,7 +14,7 @@ const Contact = props => (
     </tr>
 )
 
-export default class ContactsList extends Component {
+export default class ContactList extends Component {
     constructor(props)
     {
         super(props);
@@ -23,7 +23,7 @@ export default class ContactsList extends Component {
 
     componentDidMount()
     {
-        axios.get('http://localhost:3001/contacts/')
+        axios.get('http://localhost:3000/contacts/')
             .then(response => {
                 this.setState({ contacts: response.data});
             })
@@ -38,7 +38,7 @@ export default class ContactsList extends Component {
             return <Contact contact={currentContact} key={i} />;
         })
     }
-
+	
     render()
     {
         return (
@@ -47,10 +47,10 @@ export default class ContactsList extends Component {
                 <table className="table table-striped" style={{ marginTop: 20 }}>
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Number</th>
-                            <th>Email</th>
-                            <th>Action</th>
+                            <th color="#FFFFFF"><font color="#FFFFFF">Name</font></th>
+                            <th color="#FFFFFF"><font color="#FFFFFF">Number</font></th>
+                            <th color="#FFFFFF"><font color="#FFFFFF">Email</font></th>
+                            <th color="#FFFFFF"><font color="#FFFFFF">Action</font></th>
                         </tr>
                     </thead>
                     <tbody>

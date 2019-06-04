@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class ContactsList extends Component {
+export default class EditContact extends Component {
 
     constructor(props)
     {
