@@ -37,8 +37,8 @@ class Login extends Component {
 
     // // Here we need to axios.get() the database password hash
 
-    // axios.post('http://localhost:3001/api/user/login', this.state)
-    // .then(res => console.log(res));
+    axios.post('http://localhost:3001/api/user/login', this.state)
+    .then(res => console.log(res.status));
     this.props.history.push('/contactList');
 
     // const dbHash = "sss";

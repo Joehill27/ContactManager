@@ -14,11 +14,7 @@ router.get('/:userId/getContacts/',(req, res) => {
 
         var contacts = user.contacts;
 
-        if(!contacts) {
-            res.status(404).send("contacts not found");
-        } else {
-            res.json(contacts);
-        }
+        res.status(200).send({'contacts': contacts});
     });
 });
 

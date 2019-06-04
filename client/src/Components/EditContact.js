@@ -17,12 +17,12 @@ export default class EditContact extends Component {
 
     componentDidMount()
     {
-        axios.get('http://localhost:3000/contacts'+this.props.match.params.id)
+        axios.put('http://localhost:3001/contact/'+this.props.userId + 'updateContact/'+ this.props.match.params.id)
             .then(response => {
                 this.setState({
-                    contact_name: response.data.contact_name,
-                    contact_phone: response.data.contact_name,
-                    contact_email: response.data.contact_email
+                    contact_name: response.contact.contact_name,
+                    contact_phone: response.contact.contact_name,
+                    contact_email: response.contact.contact_email
                 })
             })
             .catch(function(error){
