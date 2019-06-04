@@ -36,17 +36,19 @@ class Login extends Component {
 
   // TODO
   handleSubmit(e) {
-    // e.preventDefault();
+    e.preventDefault();
 
-    // console.log('The form was sent with data:');
-    // console.log(this.state);
+    console.log('The form was sent with data:');
+    console.log(this.state);
 
     // // Here we need to axios.get() the database password hash
 
-    // axios.post('http://localhost:3001/api/user/login', this.state)
-    // .then(res => console.log(res));
-    this.props.history.push('/contactList');
-
+    axios.post('http://localhost:3001/api/user/login', this.state)
+    .then(res => console.log(res.status));
+    if(Response.status == 200){
+      this.props.history.push('/contactList');
+    }
+    
     // const dbHash = "sss";
     // console.log(encryptor.compare(this.state.password, dbHash));
 
