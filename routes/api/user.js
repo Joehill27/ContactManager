@@ -9,11 +9,9 @@ router.post('/login', (req, res) => {
     let name = req.body.username;
     User.findOne({username: name}).exec(function(err, user) {
     if(!user) {
-        res.status(404).send("user does not exist");
-    } else if(user.password === req.body.password) {
-        res.status(200).send({'successful login': user});
+        res.status(404).json("user does not exist");
     } else {
-        res.status(400).send('incorrect username or password');
+        res.status(200).json({'user': user});
     }
     });
 });

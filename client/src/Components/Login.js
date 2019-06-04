@@ -30,7 +30,7 @@ class Login extends Component {
 
   // TODO
   handleSubmit(e) {
-    // e.preventDefault();
+    e.preventDefault();
 
     // console.log('The form was sent with data:');
     // console.log(this.state);
@@ -38,8 +38,33 @@ class Login extends Component {
     // // Here we need to axios.get() the database password hash
 
     axios.post('http://localhost:3001/api/user/login', this.state)
-    .then(res => console.log(res.status));
-    this.props.history.push('/contactList');
+      .then(res => {
+        console.log('password ' + res.data.user.password);
+        this.props.history.push('/contactList');
+      })
+      .catch(error => {
+        console.log(error);
+        alert(error);
+        this.props.history.push('/login');
+      });
+
+    // axios.post('http://localhost:3001/api/user/login', this.state)
+    //      .then(function (response, error) {
+    //           console.log(response.status);
+    //           if (response.status == 200){
+    //             console.log("LOGIN SUCCESS");
+    //             this.props.history.push('/contactList');       
+    //           } else if (response.status == 400) {         
+    //             console.log("LOGIN FAILURE");
+    //             this.props.history.push('/login');
+    //           } else {         
+    //             console.log("USER NAME DOES NOT EXIST");
+    //             this.props.history.push('/');
+    //           }
+    //           if(error) {
+    //             console.log(error);
+    //           }     
+    //     });
 
     // const dbHash = "sss";
     // console.log(encryptor.compare(this.state.password, dbHash));
