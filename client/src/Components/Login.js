@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 const bcrypt = require('bcryptjs');
 
-const encryptor = require('./PasswordEncryptor');
+// const encryptor = require('./PasswordEncryptor');
 
 class Login extends Component {
 
@@ -39,7 +39,7 @@ class Login extends Component {
     // Here we need to axios.get() the database password hash
 
     const dbHash = "sss";
-    console.log(encryptor.Compare(this.state.password, dbHash));
+    // console.log(encryptor.Compare(this.state.password, dbHash));
 
     // axios.post()
   }
