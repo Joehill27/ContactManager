@@ -1,5 +1,5 @@
 {
-  "name": "mern-contact-manager",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,7 +9,6 @@
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongodb": "^3.2.5",
     "mongoose": "^5.5.11",
     "morgan": "^1.9.1",
     "react": "^16.8.6",
@@ -32,18 +31,6 @@
       "not dead",
       "not op_mini all"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Joehill27/ContactManager.git"
   },
   "keywords": [],
   "author": "",
