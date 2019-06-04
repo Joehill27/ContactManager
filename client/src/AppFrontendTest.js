@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
-import logo from'./Components/Contacts.png';
+//import logo from'./Components/Contacts.png';
 
 import './App.css';
 import Login from "./Components/Login";
@@ -14,7 +14,7 @@ import ContactList from "./Components/ContactList";
 
 axios.defaults.headers.post['Access-Control-Allow-Methods'] = 'PATCH, DELETE, POST, GET, OPTIONS';
 
-class App extends Component {
+class App2 extends Component {
 
   // here is our UI
   render() {
@@ -46,4 +46,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App2;
