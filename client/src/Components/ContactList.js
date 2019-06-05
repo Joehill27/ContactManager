@@ -20,18 +20,28 @@ const Contact = props => (
 class ContactList extends Component {
     constructor(props) {
         super(props);
-        this.state = {contacts: []};
+        this.state = {userId: localStorage.getItem('userId'), contacts: []};
+
     }
 
-    componentDidMount()
-    {
-        axios.get('http://localhost:3001/contacts/')
-            .then(response => {
-                this.setState({ contacts: response.data});
-            })
-            .catch(function (error){
-                console.log(error);
-            })
+    
+
+    componentDidMount() {
+        this.getContacts();
+    }
+
+    // getContacts = async() => {
+    //     try {
+    //         return await axios.get('http://localhost:3001/api/contact/'+ this.state.userId + '/getContacts/')
+    //     } catch(error) {
+    //         console.log(error);
+    //     }
+    // }
+
+    getContacts = async() => {
+        const response = await axios.get('http://localhost:3001/api/contact/'+ this.state.userId + '/getContacts/')
+        console.log(response);
+        this.setState({contacts : response.contacts});
     }
 
     contactList()
@@ -43,6 +53,9 @@ class ContactList extends Component {
 	
     render()
     {
+
+        console.log("Current user's ID " + this.state.userId);
+
         return (
             <div className="App">
 

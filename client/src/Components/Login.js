@@ -10,7 +10,8 @@ class Login extends Component {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      loggedIn: 'false'
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -51,8 +52,11 @@ class Login extends Component {
       passwordCheck.then(function(result)
       { 
         console.log(result)
-        if(result) this.props.history.push('/contactList');
+        // if(result) this.props.history.push('/contactList');
+        // if(result) 
       });
+    }).catch(err => {
+      console.log(err);
     });
 
     // axios.post('http://localhost:3001/api/user/login', this.state)
@@ -63,9 +67,34 @@ class Login extends Component {
 
   render() {
 
+    // if(this.state.loggedIn) {
+    //   this.props.history.push('/contactList');
+    // }
+
+    const login = async() => {
+      try {
+        return await axios.post('http://localhost:3001/api/user/login', this.state);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    const loginHandler = async() => {
+      const response = await login();
+      console.log(response);
+      if(response) {
+        localStorage.setItem('userId', response.data.user._id);
+        localStorage.setItem('userName', response.data.user.username);
+        this.props.history.push('/contactList');
+      } else {
+        alert(response.data.error);
+      }
+      
+  }
+
+
     return (
       <div className="FormCenter">
-        <form onSubmit={this.handleSubmit} className="FormFields">
           {/* Usermane */}
           <div className="FormField">
             <label className="FormField__Label" htmlFor="name">Username</label>
@@ -80,10 +109,9 @@ class Login extends Component {
           </div>
           {/* Login Button */}
           <div className="FormField">
-            <button className="FormField__Button mr-20">Login</button>
+            <button onClick={loginHandler} className="FormField__Button mr-20">Login</button>
             <Link  to="/" className="FormField__Link">Create an account</Link>
           </div>
-        </form>
       </div>
     );
   }
