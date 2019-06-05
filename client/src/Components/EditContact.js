@@ -36,7 +36,7 @@ export default class EditContact extends Component {
 
     render() {
         return (
-            <div>
+            <div className="App__Form">
                 <h3 align="center">Update Contact</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
