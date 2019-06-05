@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
 
-import CreateNew from "./CreateContact";
-import EditContact from "./EditContact";
-
 const Contact = props => (
     <tr>
         <td>{props.contact.contact_name}</td>
@@ -19,15 +16,13 @@ const Contact = props => (
 );
 
 class ContactList extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {userId: localStorage.getItem('userId'), contacts: []};
-
     }
 
-    
-
     componentDidMount() {
+        // this.props.history.push('/contactList');
         this.getContacts();
     }
 
@@ -50,13 +45,10 @@ class ContactList extends Component {
 
         return (
             <div className="App">
-
-    
                 <div className="App__Aside">
 
                 </div>
 		
-
                 <div className="App__Form">
          
                     <label><font size="6">Contact Manager</font></label>
@@ -76,7 +68,7 @@ class ContactList extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* { this.contactList() } */}
+                            { contactList() }
                         </tbody>
                     </table>
                 </div>	

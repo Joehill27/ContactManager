@@ -7,6 +7,14 @@
 .App__Aside {
   width: 50%;
   background-color: #66DAC7;
+  /* position: absolute; */
+  /* float: left; */
+
+}
+
+img {
+  margin-left: 27%;
+  margin-top: 25%;
 }
 
 .App__Form {

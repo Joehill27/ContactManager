@@ -15,7 +15,6 @@ class Login extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -28,48 +27,7 @@ class Login extends Component {
     });
   }
 
-
-  // TODO
-  handleSubmit(e) {
-    e.preventDefault();
-
-    // console.log('The form was sent with data:');
-    // console.log(this.state);
-
-    // // Here we need to axios.get() the database password hash
-    axios.post('http://localhost:3001/api/user/login', this.state)
-    .then(res => {
-      console.log(res.data.user.password);
-      const passwordCheck = new Promise((resolve, reject) =>
-      {
-          bcrypt.compare(this.state.password, res.data.user.password, function(err, check)
-          {
-              if(err) reject(err)
-              resolve(check)
-          })
-      })
-      var correctLogin;
-      passwordCheck.then(function(result)
-      { 
-        console.log(result)
-        // if(result) this.props.history.push('/contactList');
-        // if(result) 
-      });
-    }).catch(err => {
-      console.log(err);
-    });
-
-    // axios.post('http://localhost:3001/api/user/login', this.state)
-    // .then(res => console.log(res.status));
-
-    var dbHash = "ss";
-  }
-
   render() {
-
-    // if(this.state.loggedIn) {
-    //   this.props.history.push('/contactList');
-    // }
 
     const login = async() => {
       try {

@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import './App.css';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+// import Icon from '../src/img/contactIcon.png';
+import Icon from '../src/img/whatsapp-logo.png';
 
 import Login from "./Components/Login";
 import CreateAccount from "./Components/CreateAccount";
@@ -18,6 +20,7 @@ class App extends Component {
       <div className="App">
 
         <div className="App__Aside">
+        <img src={Icon} width='40%' height='auto'/>
         </div>
 
         <div className="App__Form">
