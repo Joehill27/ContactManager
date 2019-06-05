@@ -24,6 +24,13 @@ img {
   overflow: auto;
 }
 
+.App__ContactPage {
+  width: 100%;
+  background-color: #2E4158;
+  padding: 25px 40px;
+  overflow: auto;
+}
+
 .PageSwitcher {
   display: flex;
   justify-content: flex-end;

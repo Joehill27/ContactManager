@@ -45,11 +45,9 @@ class ContactList extends Component {
 
         return (
             <div className="App">
-                <div className="App__Aside">
-
-                </div>
+                
 		
-                <div className="App__Form">
+                <div className="App__ContactPage">
          
                     <label><font size="6">Contact Manager</font></label>
           	        <div className="PageSwitcher">
@@ -68,7 +66,7 @@ class ContactList extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            { contactList() }
+                            {/* { this.contactList() } */}
                         </tbody>
                     </table>
                 </div>	
