@@ -87,7 +87,7 @@ class Login extends Component {
         localStorage.setItem('userName', response.data.user.username);
         this.props.history.push('/contactList');
       } else {
-        alert(response.data.error);
+        alert("Unable to login");
       }
       
   }

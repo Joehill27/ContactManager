@@ -7,10 +7,11 @@ const User = require('../../models/User');
 //Checks if a user exists by username, if they do checks password
 router.post('/login', (req, res) => {
     let name = req.body.username;
+    let password = req.body.password;
     User.findOne({username: name}).exec(function(err, user) {
     if(!user) {
-        res.status(404).send("user does not exist");
-    } else {
+        res.status(404).send({error : "user does not exist"});
+    } else{
         res.status(200).send({'user': user});
     }
     });
