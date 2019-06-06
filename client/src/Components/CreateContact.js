@@ -72,7 +72,6 @@ export default class CreateNew extends Component {
     render() {
         return (
 			<div className="App__ContactPage" height="auto">
-            {/* <div style={{marginTop: 10}}> */}
                 <h3>Create New Contact</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group"> 

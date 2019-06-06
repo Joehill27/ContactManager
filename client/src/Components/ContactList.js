@@ -27,6 +27,8 @@ class ContactList extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.searchHandler = this.searchHandler.bind(this);
+        this.editContactHandler = this.editContactHandler.bind(this);
+        this.deleteContactHandler = this.deleteContactHandler.bind(this);
     }
 
     componentDidMount() {
@@ -54,6 +56,7 @@ class ContactList extends Component {
                 console.log(arrayItem);
                 var name = arrayItem.contact_name.toString();
                 name = name.toLowerCase();
+                console.log("Here is the name: "+name);
                 if(name.includes(searchTerm.toLowerCase())) {
                     filteredContacts.push(arrayItem);
                     console.log(name);
@@ -102,12 +105,29 @@ class ContactList extends Component {
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_name}</font></td>
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_phone}</font></td>
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_email}</font></td>
+                {/* <button onClick={this.editContactHandler()} className="Contact__Button" >Edit</button> */}
+                <button  className="Contact__Button" >Edit</button>
+                {/* <button onClick={this.deleteContactHandler(index)} className="Contact__Button" >Delete</button> */}
+                <button className="Contact__Button" >Delete</button>
             </tr>
         )
+    }
+
+    deleteContactHandler(index) {
+        var array = [...this.state.contacts];
+        array.splice(index, 1);
+        this.setState({contacts: array});
+    }
+
+    editContactHandler() {
+        this.props.history.push('/editContact');
     }
 	
     render()
     {
+
+        
+
         console.log("Current user's ID " + this.state.userId);
 
         const data = this.contactList();
