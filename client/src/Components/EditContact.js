@@ -11,28 +11,32 @@ export default class EditContact extends Component {
         {
             contact_name: '',
             contact_phone: '',
-            contact_email: ''
+            contact_email: '',
+            contact_id: ''
         }
     }
 
     componentDidMount()
     {
-        axios.put('http://localhost:3001/contact/'+this.props.userId + 'updateContact/'+ this.props.match.params.id)
-            .then(response => {
-                this.setState({
-                    contact_name: response.contact.contact_name,
-                    contact_phone: response.contact.contact_name,
-                    contact_email: response.contact.contact_email
-                })
-            })
-            .catch(function(error){
-                console.log(error);
-            })
+        this.updateContact();
     }
+        updateContact = async() => {
+            //TODO get the contactId from somewhere
+            const response = 
+                await axios.put(
+                    'http://localhost:/3001/api/contact/'+ 
+                    localStorage.getItem('userId') + "/updateContact/"+ this.state.contact_id);
+            this.setState({
+                contact_name: response.contact.contact_name,
+                contact_phone: response.contact.contact_name,
+                contact_email: response.contact.contact_email
+            })
+
+        }
 
     render() {
         return (
-            <div>
+            <div className="App__Form">
                 <h3 align="center">Update Contact</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">

@@ -7,6 +7,14 @@
 .App__Aside {
   width: 50%;
   background-color: #66DAC7;
+  /* position: absolute; */
+  /* float: left; */
+
+}
+
+img {
+  margin-left: 27%;
+  margin-top: 25%;
 }
 
 .App__Form {
@@ -14,6 +22,14 @@
   background-color: #2E4158;
   padding: 25px 40px;
   overflow: auto;
+}
+
+.App__ContactPage {
+  width: 100%;
+  background-color: #2E4158;
+  padding: 25px 40px;
+  overflow: auto;
+  height:100vh
 }
 
 .PageSwitcher {

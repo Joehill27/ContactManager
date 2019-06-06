@@ -1,19 +1,18 @@
 const express = require('express');
 const router = express.Router();
-
 const User = require('../../models/User');
+// const bcrypt = require('bcryptjs');
 
 
 //Checks if a user exists by username, if they do checks password
 router.post('/login', (req, res) => {
     let name = req.body.username;
+    let password = req.body.password;
     User.findOne({username: name}).exec(function(err, user) {
     if(!user) {
-        res.status(404).send("user does not exist");
-    } else if(user.password === req.body.password) {
-        res.status(200).send({'successful login': user});
-    } else {
-        res.status(400).send('incorrect username or password');
+        res.status(404).send({error : "user does not exist"});
+    } else{
+        res.status(200).send({'user': user});
     }
     });
 });
@@ -27,10 +26,10 @@ router.post('/createAccount', (req, res) => {
             let newUser = new User(req.body);
             newUser.save()
             .then(newUser => {
-                res.status(200).json({'user': newUser});
+                res.status(200).send({'user': newUser, 'error' : ''});
             })
         } else {
-            res.status(400).send("Account with that username already exists");
+            res.status(400).send({'error': "Account with that username already exists"});
         }
     });
 });
@@ -41,7 +40,7 @@ router.delete('/deleteAccount/:userId', (req, res) => {
 
     User.findOneAndDelete({id: userId}, function(err, user) {
         if(!user) {
-            res.status(404).send('user not found' + err);
+            res.status(404).send({error: 'user not found' + err});
         }
         else {
             res.status(200).send({'user': user});

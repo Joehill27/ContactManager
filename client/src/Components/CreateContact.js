@@ -55,9 +55,9 @@ export default class CreateNew extends Component {
         }
 
         //TODO get userID from somewhere......
-        var userId;
+        var userId = localStorage.getItem('userId');
 
-        axios.post('http://localhost:3001/contact/' + userId + '/addContact/', newContact)
+        axios.post('http://localhost:3001/api/contact/' + userId + '/addContact/', newContact)
             .then(res => console.log(res.data));
         
         this.setState({
@@ -65,12 +65,14 @@ export default class CreateNew extends Component {
             contact_phone: '',
             contact_email: ''
         })
+
+        this.props.history.push('/contactList');
     }
 
     render() {
         return (
-			
-            <div style={{marginTop: 10}}>
+			<div className="App__ContactPage" height="auto">
+            {/* <div style={{marginTop: 10}}> */}
                 <h3>Create New Contact</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group"> 
@@ -101,7 +103,7 @@ export default class CreateNew extends Component {
                     </div>
 
                     <div className="form-group">
-                        <input type="submit" value="Create Contact" className="btn btn-primary" />							
+                        <input type="submit" value="Create Contact" className="FormField__Button" />							
 					</div>
                 </form>
 			</div>

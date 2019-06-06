@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
-// import logo from'./Components/Contacts.png';
+// import logo from './Components/img/Contacts.png';
+import logo from './Components/img/whatsapp-logo.png';
 
 import './App.css';
 import Login from "./Components/Login";
