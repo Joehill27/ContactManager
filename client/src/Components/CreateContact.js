@@ -80,7 +80,7 @@ export default class CreateNew extends Component {
                                 className="form-control"
                                 value={this.state.contact_name}
                                 onChange={this.onChangeContactName}
-                                />
+                        />
                     </div>
                     <div className="form-group">
                         <label>Contact Phone: </label>

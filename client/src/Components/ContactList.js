@@ -47,21 +47,21 @@ class ContactList extends Component {
         let currentContacts = [];
         currentContacts = this.state.contacts;
         let filteredContacts = [];
-        let searchTerm = this.state.searchParam;
+        let searchTerm = this.state.searchParam.toLowerCase();
 
-        console.log(currentContacts);
+        // console.log(currentContacts);
 
         if(searchTerm !== "") {
             currentContacts.forEach(function(arrayItem) {
                 console.log(arrayItem);
-                var name = arrayItem.contact_name.toString();
-                console.log("Here is the name: "+ name);
+                var name = arrayItem.contact_name.toString().toLowerCase();
+                // console.log("Here is the name: "+ name);
                 if(name.includes(searchTerm)) {
                     filteredContacts.push(arrayItem);
                     console.log(name);
                 }
             });
-            console.log(filteredContacts);
+            // console.log(filteredContacts);
             this.setState({
                 contacts: filteredContacts,
                 searchParam : ""
@@ -123,11 +123,6 @@ class ContactList extends Component {
 	
     render()
     {
-
-        
-
-        console.log("Current user's ID " + this.state.userId);
-
         const data = this.contactList();
         return (
             <div className="App">
