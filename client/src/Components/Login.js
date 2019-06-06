@@ -45,9 +45,7 @@ class Login extends Component {
 
     axios.post('http://localhost:3001/api/user/login', this.state)
     .then(res => console.log(res.status));
-    if(Response.status == 200){
       this.props.history.push('/contactList');
-    }
     
     // const dbHash = "sss";
     // console.log(encryptor.compare(this.state.password, dbHash));
@@ -86,7 +84,7 @@ class Login extends Component {
           {/* Login Button */}
           <div className="FormField">
             <button className="FormField__Button mr-20">Login</button>
-            <Link exact to="/" className="FormField__Link">Create an account</Link>
+            <Link to="/" className="FormField__Link">Create an account</Link>
           </div>
         </form>
       </div>
