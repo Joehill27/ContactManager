@@ -66,8 +66,9 @@ router.put('/:userId/updateContact/:contactId', (req, res) => {
     
     User.findById(userId, function(err, user){
         var contact = user.contacts.id(contactId);
-        if(!contact) res.status(404).send("Unable to find contact");        
-        contact.set(req.body);
+        if(!contact) res.status(404).send("Unable to find contact");   
+            if(req.body)     
+                contact.set(req.body);
 
         user.save()
         .then(
