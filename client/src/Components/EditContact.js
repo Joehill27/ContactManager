@@ -78,7 +78,7 @@ export default class EditContact extends Component {
                     <NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
                     <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
                 </div>
-                <h3 className="FormTitle"><font size="6">Edit Contact</font></h3>
+                <h3 className="FormTitle__White"><font size="6">Edit Contact</font></h3>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <div className="form-group">
                         <label className="FormField__Label">Name</label>
