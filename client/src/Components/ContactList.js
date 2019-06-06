@@ -47,22 +47,22 @@ class ContactList extends Component {
         let currentContacts = [];
         currentContacts = this.state.contacts;
         let filteredContacts = [];
-        let searchTerm = this.state.searchParam;
+        let searchTerm = this.state.searchParam.toLowerCase();
 
-        console.log(currentContacts);
+        // console.log(currentContacts);
 
         if(searchTerm !== "") {
             currentContacts.forEach(function(arrayItem) {
-                console.log(arrayItem);
+                // console.log(arrayItem);
                 var name = arrayItem.contact_name.toString();
                 name = name.toLowerCase();
-                console.log("Here is the name: "+name);
+                // console.log("Here is the name: "+name);
                 if(name.includes(searchTerm.toLowerCase())) {
                     filteredContacts.push(arrayItem);
-                    console.log(name);
+                    // console.log(name);
                 }
             });
-            console.log(filteredContacts);
+            // console.log(filteredContacts);
             this.setState({
                 contacts: filteredContacts,
                 searchParam : ""
@@ -108,7 +108,7 @@ class ContactList extends Component {
                 {/* <button onClick={this.editContactHandler()} className="Contact__Button" >Edit</button> */}
                 <button  className="Contact__Button ml-20" >Edit</button>
                 {/* <button onClick={this.deleteContactHandler(index)} className="Contact__Button" >Delete</button> */}
-                <button className="Contact__Button ml-20" >Delete</button>
+                <button className="Contact__Button ml-20" onClick={() => this.deleteContactHandler(index)} >Delete</button>
             </tr>
         )
     }
@@ -117,6 +117,7 @@ class ContactList extends Component {
         var array = [...this.state.contacts];
         array.splice(index, 1);
         this.setState({contacts: array});
+        const response = axios.get('http://localhost:3001/api/contact' + this.state.userId + 'deleteContact/' + index);
     }
 
     editContactHandler() {
@@ -125,11 +126,6 @@ class ContactList extends Component {
 	
     render()
     {
-
-        
-
-        console.log("Current user's ID " + this.state.userId);
-
         const data = this.contactList();
         return (
             <div className="App">
@@ -164,7 +160,7 @@ class ContactList extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.contacts.map(this.renderContact)}
+                                {this.state.contacts.map(this.renderContact.bind(this))}
                             </tbody>
                         </table>
                     </div>

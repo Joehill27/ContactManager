@@ -88,7 +88,7 @@ export default class CreateNew extends Component {
                                 placeholder="Enter Name"
                                 value={this.state.contact_name}
                                 onChange={this.onChangeContactName}
-                                />
+                        />
                     </div>
                     <div className="FormField">
                         <label className="FormField__Label">Phone</label>
