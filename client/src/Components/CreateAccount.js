@@ -45,7 +45,7 @@ class CreateAccount extends Component {
 
     const createAccount = async() => {
       try {
-        return await axios.post(localHosting + '/api/user/createAccount', this.state);
+        return await axios.post('/api/user/createAccount', this.state);
       } catch(error) {
         console.log(error);
       }

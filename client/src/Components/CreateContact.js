@@ -5,13 +5,8 @@ import axios from 'axios';
 
 // console.log(logo);
 
+// var localHosting = 'http://localhost:3001';
 var localHosting = '';
-
-if(process.env.NODE_ENV === 'production') {
-    localHosting = '';
-} else {
-    localHosting = 'http://localhost:3001';
-}
 
 export default class CreateNew extends Component {
     constructor(props)
@@ -66,7 +61,7 @@ export default class CreateNew extends Component {
         //TODO get userID from somewhere......
         var userId = localStorage.getItem('userId');
 
-        axios.post(localHosting + '/api/contact/' + userId + '/addContact/', newContact)
+        axios.post('/api/contact/' + userId + '/addContact/', newContact)
             .then(res => console.log(res.data));
         
         this.setState({

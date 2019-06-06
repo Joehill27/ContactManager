@@ -3,13 +3,8 @@ import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom'
 import axios from 'axios';
 
 
+// var localHosting = 'http://localhost:3001';
 var localHosting = '';
-
-if(process.env.NODE_ENV === 'production') {
-    localHosting = '';
-} else {
-    localHosting = 'http://localhost:3001';
-}
 export default class EditContact extends Component {
 
     constructor(props)
@@ -66,7 +61,7 @@ export default class EditContact extends Component {
         var contactId = localStorage.getItem('contactId');
         console.log(contactId);
 
-        axios.put(localHosting + '/api/contact/' + userId + '/updateContact/' + contactId, newContact)
+        axios.put('/api/contact/' + userId + '/updateContact/' + contactId, newContact)
             .then(res => console.log(res.data));
         
         localStorage.removeItem('contactId');
