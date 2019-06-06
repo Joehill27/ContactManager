@@ -130,6 +130,17 @@ img {
   font-weight: 500;
 }
 
+.Contact__Button {
+  background-color: #52C4B9;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  /* padding: 15px 70px; */
+  font-size: .8em;
+  font-weight: 500;
+}
+
 .FormField__Link {
   color: #66707D;
   text-decoration: none;

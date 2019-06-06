@@ -14,6 +14,59 @@ export default class EditContact extends Component {
             contact_email: '',
             contact_id: ''
         }
+
+        this.onChangeContactName = this.onChangeContactName.bind(this);
+        this.onChangeContactPhone = this.onChangeContactPhone.bind(this);
+        this.onChangeContactEmail = this.onChangeContactEmail.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    onChangeContactName = e => {
+        this.setState({
+            contact_name: e.target.value
+        });
+    }
+
+    onChangeContactPhone = e => {
+        this.setState({
+            contact_phone: e.target.value
+        });
+    }
+
+    onChangeContactEmail = e => {
+        this.setState({
+            contact_email: e.target.value
+        });
+    }
+
+    onSubmit = e => {
+        e.preventDefault();
+
+        console.log(`Form submitted:`);
+        console.log(`Contact Name: ${this.state.contact_name}`);
+        console.log(`Contact Phone: ${this.state.contact_phone}`);
+        console.log(`Contact Email: ${this.state.contact_email}`);
+
+        const newContact = {
+            contact_name: this.state.contact_name,
+            contact_phone: this.state.contact_phone,
+            contact_email: this.state.contact_email
+        }
+
+        //TODO get userID from somewhere......
+        var userId = localStorage.getItem('userId');
+        var contactId = this.state.contact.contact_id;
+
+        axios.put('http://localhost:3001/api/contact/' + userId + '/updateContact/' + contactId, newContact)
+            .then(res => console.log(res.data));
+        
+        this.setState({
+            contact_name: '',
+            contact_phone: '',
+            contact_email: ''
+        })
+
+        this.props.history.push('/contactList');
     }
 
     componentDidMount()
@@ -36,8 +89,8 @@ export default class EditContact extends Component {
 
     render() {
         return (
-            <div className="App__Form">
-                <h3 align="center">Update Contact</h3>
+            <div className="App__ContactPage" height="auto">
+                <h3>Update Contact</h3> 
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Name</label>
@@ -67,7 +120,7 @@ export default class EditContact extends Component {
                     <br />
 
                     <div className="form-group">
-                        <input type="submit" value="Update Contact" className="btn btn-primary" />
+                        <input type="submit" value="Update Contact" className="FormField__Button" />
                     </div>
                 </form>
             </div>
