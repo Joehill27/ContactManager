@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
+import { BrowserRouter as NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Contact = props => (
@@ -106,7 +106,7 @@ class ContactList extends Component {
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_phone}</font></td>
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_email}</font></td>
                 {/* <button onClick={this.editContactHandler()} className="Contact__Button" >Edit</button> */}
-                <button  className="Contact__Button" >Edit</button>
+                <button  className="Contact__Button" onClick={() => this.editContactHandler(index)} >Edit</button>
                 {/* <button onClick={this.deleteContactHandler(index)} className="Contact__Button" >Delete</button> */}
                 <button className="Contact__Button" onClick={() => this.deleteContactHandler(index)} >Delete</button>
             </tr>
@@ -117,10 +117,14 @@ class ContactList extends Component {
         var array = [...this.state.contacts];
         array.splice(index, 1);
         this.setState({contacts: array});
-        const response = axios.get('http://localhost:3001/api/contact' + this.state.userId + 'deleteContact/' + index);
+        console.log(this.state.userId);
+        console.log('http://localhost:3001/api/contact/' + this.state.userId + '/deleteContact/' + index);
+        const response = axios.get('http://localhost:3001/api/contact/' + this.state.userId + '/deleteContact/' + index);
+        console.log(response);
     }
 
-    editContactHandler() {
+    editContactHandler(index) {
+
         this.props.history.push('/editContact');
     }
 	

@@ -52,10 +52,11 @@ export default class EditContact extends Component {
             contact_phone: this.state.contact_phone,
             contact_email: this.state.contact_email
         }
-
+        
+        console.log("56");
         //TODO get userID from somewhere......
         var userId = localStorage.getItem('userId');
-        var contactId = this.state.contact.contact_id;
+        var contactId = this.state.contact_id;
 
         axios.put('http://localhost:3001/api/contact/' + userId + '/updateContact/' + contactId, newContact)
             .then(res => console.log(res.data));
@@ -74,6 +75,7 @@ export default class EditContact extends Component {
         this.updateContact();
     }
         updateContact = async() => {
+            console.log("78");
             //TODO get the contactId from somewhere
             const response = 
                 await axios.put(
@@ -91,7 +93,7 @@ export default class EditContact extends Component {
         return (
             <div className="App__ContactPage" height="auto">
                 <h3>Update Contact</h3> 
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit.bind(this)}>
                     <div className="form-group">
                         <label>Name</label>
                         <input  type="text"
