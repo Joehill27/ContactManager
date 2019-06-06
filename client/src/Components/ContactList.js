@@ -111,9 +111,9 @@ class ContactList extends Component {
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_phone}</font></td>
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_email}</font></td>
                 {/* <button onClick={this.editContactHandler()} className="Contact__Button" >Edit</button> */}
-                <button  className="Contact__Button ml-20" onClick={() => this.editContactHandler(contact._id)} >Edit</button>
+                <td> <button  className="Contact__Button ml-20" onClick={() => this.editContactHandler(contact._id)} >Edit</button> </td>
                 {/* <button onClick={this.deleteContactHandler(index)} className="Contact__Button" >Delete</button> */}
-                <button className="Contact__Button__Red ml-20" onClick={() => this.deleteContactHandler(index)} >Delete</button>
+                <td> <button className="Contact__Button__Red ml-20" onClick={() => this.deleteContactHandler(index)} >Delete</button> </td>
             </tr>
         )
     }
