@@ -5,7 +5,7 @@ import axios from 'axios';
 
 // console.log(logo);
 
-const localHosting = '';
+var localHosting = '';
 
 if(process.env.NODE_ENV === 'production') {
     localHosting = '';

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 const bcrypt = require('bcryptjs');
 
-const localHosting = '';
+var localHosting = '';
 
 if(process.env.NODE_ENV === 'production') {
     localHosting = '';

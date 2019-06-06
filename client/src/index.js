@@ -5,14 +5,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Router from './Components/router';
 
-const localHosting = '';
-
-if(process.env.NODE_ENV === 'production') {
-    localHosting = '';
-} else {
-    localHosting = 'http://localhost:3001';
-}
-
 ReactDOM.render(<Router />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

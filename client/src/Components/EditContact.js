@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom'
 import axios from 'axios';
 
 
-const localHosting = '';
+var localHosting = '';
 
 if(process.env.NODE_ENV === 'production') {
     localHosting = '';
