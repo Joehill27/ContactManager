@@ -131,16 +131,16 @@ class ContactList extends Component {
     render()
     {
         const data = this.contactList();
+        
         return (
             <div className="App">
                 <div className="App__ContactPage" >              
 
-                    
                     <div className="PageSwitcher">
                         <NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
                         <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
                     </div>
-                    
+
                     <h3 className="FormTitle__mb-10"><font size="6">Contacts</font></h3>
                     
                     <div className="FormField">
@@ -153,7 +153,6 @@ class ContactList extends Component {
                      </div> 
 
                     <div>
-                        
                         <table className="table table-striped" style={{ marginTop: 20 }}>
                             <thead>
                                 <tr>
@@ -168,7 +167,6 @@ class ContactList extends Component {
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             </div>
         );
