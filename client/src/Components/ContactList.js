@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
 
-// var localHosting = 'http://localhost:3001';
-var localHosting = '';
-
-
 const Contact = props => (
     <tr>
         <td>{props.contact.contact_name}</td>
@@ -20,8 +16,8 @@ const Contact = props => (
 );
 
 class ContactList extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             userId: localStorage.getItem('userId'),
             searchParam : '',
@@ -91,7 +87,7 @@ class ContactList extends Component {
       }
 
     getContacts = async() => {
-        const response = await axios.get('/api/contact/'+ this.state.userId + '/getContacts/')
+        const response = await axios.get('http://localhost:3001/api/contact/'+ this.state.userId + '/getContacts/')
         console.log(response);
         this.setState({contacts : response.data.contacts});
     }
@@ -114,8 +110,10 @@ class ContactList extends Component {
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_name}</font></td>
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_phone}</font></td>
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_email}</font></td>
-                <td><button  className="Contact__Button ml-20" onClick={() => this.editContactHandler(contact._id)} >Edit</button></td>
-                <td><button className="Contact__Button__Red ml-20" onClick={() => this.deleteContactHandler(index)} >Delete</button></td>
+                {/* <button onClick={this.editContactHandler()} className="Contact__Button" >Edit</button> */}
+                <button  className="Contact__Button ml-20" onClick={() => this.editContactHandler(contact._id)} >Edit</button>
+                {/* <button onClick={this.deleteContactHandler(index)} className="Contact__Button" >Delete</button> */}
+                <button className="Contact__Button__Red ml-20" onClick={() => this.deleteContactHandler(index)} >Delete</button>
             </tr>
         )
     }
@@ -134,7 +132,7 @@ class ContactList extends Component {
 
     deleteContact = async(contactId) => {
         try {
-            return await axios.delete('/api/contact/' + this.state.userId + '/deleteContact/' + contactId);
+            return await axios.delete('http://localhost:3001/api/contact/' + this.state.userId + '/deleteContact/' + contactId);
         } catch(error) {
             console.log(error);
         }
