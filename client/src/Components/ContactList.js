@@ -53,12 +53,13 @@ class ContactList extends Component {
 
         if(searchTerm !== "") {
             currentContacts.forEach(function(arrayItem) {
-                console.log(arrayItem);
-                var name = arrayItem.contact_name.toString().toLowerCase();
-                // console.log("Here is the name: "+ name);
-                if(name.includes(searchTerm)) {
+                // console.log(arrayItem);
+                var name = arrayItem.contact_name.toString();
+                name = name.toLowerCase();
+                // console.log("Here is the name: "+name);
+                if(name.includes(searchTerm.toLowerCase())) {
                     filteredContacts.push(arrayItem);
-                    console.log(name);
+                    // console.log(name);
                 }
             });
             // console.log(filteredContacts);
@@ -66,7 +67,8 @@ class ContactList extends Component {
                 contacts: filteredContacts,
                 searchParam : ""
             });
-        } else {
+        } 
+        else {
             alert('Search term is empty!');
         }
 

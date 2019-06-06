@@ -15,7 +15,7 @@ import ContactList from "./Components/ContactList";
 
 axios.defaults.headers.post['Access-Control-Allow-Methods'] = 'PATCH, DELETE, POST, GET, OPTIONS';
 
-class App extends Component {
+class App2 extends Component {
 
   // here is our UI
   render() {
@@ -47,4 +47,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App2;
