@@ -46,7 +46,7 @@ class Login extends Component {
         localStorage.setItem('userId', response.data.user._id);
         localStorage.setItem('userName', response.data.user.username);
         this.props.history.push('/contactList');
-        window.location.reload();
+        // window.location.reload();
       } else {
         alert("Unable to login");
       }
