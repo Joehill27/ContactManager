@@ -5,9 +5,6 @@ import axios from 'axios';
 
 // console.log(logo);
 
-// var localHosting = 'http://localhost:3001';
-var localHosting = '';
-
 export default class CreateNew extends Component {
     constructor(props)
     {
@@ -61,7 +58,7 @@ export default class CreateNew extends Component {
         //TODO get userID from somewhere......
         var userId = localStorage.getItem('userId');
 
-        axios.post('/api/contact/' + userId + '/addContact/', newContact)
+        axios.post('http://localhost:3001/api/contact/' + userId + '/addContact/', newContact)
             .then(res => console.log(res.data));
         
         this.setState({
@@ -82,7 +79,7 @@ export default class CreateNew extends Component {
                         <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
                     </div>
 
-                <label className="FormTitle__White"><font size="6">Create New Contact</font></label>
+                <label className="FormTitle"><font size="6">Create New Contact</font></label>
                 <form onSubmit={this.onSubmit}>
                     <div className="FormField"> 
                         <label className="FormField__Label">Name</label>

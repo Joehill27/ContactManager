@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
 
-
-// var localHosting = 'http://localhost:3001';
-var localHosting = '';
 export default class EditContact extends Component {
 
     constructor(props)
@@ -61,11 +58,10 @@ export default class EditContact extends Component {
         var contactId = localStorage.getItem('contactId');
         console.log(contactId);
 
-        axios.put('/api/contact/' + userId + '/updateContact/' + contactId, newContact)
+        axios.put('http://localhost:3001/api/contact/' + userId + '/updateContact/' + contactId, newContact)
             .then(res => console.log(res.data));
         
-        localStorage.removeItem('contactId');
-
+            localStorage.removeItem('contactId');
         this.setState({
             contact_name: '',
             contact_phone: '',
@@ -82,7 +78,7 @@ export default class EditContact extends Component {
                     <NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
                     <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
                 </div>
-                <h3 className="FormTitle__White"><font size="6">Edit Contact</font></h3>
+                <h3 className="FormTitle"><font size="6">Edit Contact</font></h3>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <div className="form-group">
                         <label className="FormField__Label">Name</label>
