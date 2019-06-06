@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -61,7 +62,6 @@ export default class EditContact extends Component {
             contact_email: this.state.contact_email
         }
         
-        console.log("56");
         var userId = localStorage.getItem('userId');
         var contactId = localStorage.getItem('contactId');
         console.log(contactId);
@@ -83,6 +83,10 @@ export default class EditContact extends Component {
     render() {
         return (
             <div className="App__ContactPage" height="auto">
+                <div className="PageSwitcher">
+                    <NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
+                    <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
+                </div>
                 <h3 className="FormTitle"><font size="6">Edit Contact</font></h3>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <div className="form-group">

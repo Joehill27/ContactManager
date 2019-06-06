@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as NavLink, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const localHosting = '';
@@ -153,11 +153,9 @@ class ContactList extends Component {
 	
     render()
     {
-        const data = this.contactList();
         return (
             <div className="App">
-                <div className="App__ContactPage" >              
-
+                <div className="App__ContactPage" height = "auto">
                     <div className="PageSwitcher">
                         <NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
                         <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
