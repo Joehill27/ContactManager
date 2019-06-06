@@ -29,6 +29,7 @@ class ContactList extends Component {
         this.searchHandler = this.searchHandler.bind(this);
         this.editContactHandler = this.editContactHandler.bind(this);
         this.deleteContactHandler = this.deleteContactHandler.bind(this);
+        this.renderContact = this.renderContact.bind(this);
     }
 
     componentDidMount() {
@@ -175,7 +176,7 @@ class ContactList extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.contacts.map(this.renderContact.bind(this))}
+                                {this.state.contacts.map(this.renderContact)}
                             </tbody>
                         </table>
                     </div>
