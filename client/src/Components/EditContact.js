@@ -57,22 +57,14 @@ export default class EditContact extends Component {
             contact_email: this.state.contact_email
         }
         
-<<<<<<< HEAD
-=======
-        console.log("56");
-        //TODO get userID from somewhere......
->>>>>>> parent of fb4afa8... Update contact page works
         var userId = localStorage.getItem('userId');
-        var contactId = this.state.contact_id;
+        var contactId = localStorage.getItem('contactId');;
 
         axios.put('/api/contact/' + userId + '/updateContact/' + contactId, newContact)
             .then(res => console.log(res.data));
         
-<<<<<<< HEAD
         localStorage.removeItem('contactId');
 
-=======
->>>>>>> parent of fb4afa8... Update contact page works
         this.setState({
             contact_name: '',
             contact_phone: '',
