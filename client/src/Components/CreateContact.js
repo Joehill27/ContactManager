@@ -82,7 +82,7 @@ export default class CreateNew extends Component {
                         <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
                     </div>
 
-                <label className="FormTitle__White"><font size="6">Create New Contact</font></label>
+                <label className="FormTitle"><font size="6">Create New Contact</font></label>
                 <form onSubmit={this.onSubmit}>
                     <div className="FormField"> 
                         <label className="FormField__Label">Name</label>
