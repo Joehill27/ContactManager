@@ -82,8 +82,7 @@ export default class EditContact extends Component {
                                 className="FormField__Input"
                                 placeholder="Enter Name"
                                 value={this.state.contact_name}
-                                onChange={this.onChangeContactName}
-                        />
+                                onChange={this.onChangeContactName}/>
                     </div>
                     <div className="form-group">
                         <label className="FormField__Label">Phone</label>
@@ -91,8 +90,7 @@ export default class EditContact extends Component {
                                 className="FormField__Input"
                                 placeholder="Enter Phone Number"
                                 value={this.state.contact_phone}
-                                onChange={this.onChangeContactPhone}
-                        />
+                                onChange={this.onChangeContactPhone}/>
                     </div>
                     <div className="form-group">
                         <label className="FormField__Label">Email</label>
@@ -100,11 +98,10 @@ export default class EditContact extends Component {
                                 className="FormField__Input"
                                 placeholder="Enter Email"
                                 value={this.state.contact_email}
-                                onChange={this.onChangeContactEmail}
-                        />
+                                onChange={this.onChangeContactEmail}/>
                     </div>
 
-                    <br />
+                    <br/>
 
                     <div className="form-group">
                         <input type="submit" value="Edit Contact" className="FormField__Button" />
