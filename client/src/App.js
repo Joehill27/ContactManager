@@ -8,7 +8,7 @@ import Icon from '../src/img/whatsapp-logo.png';
 import Login from "./Components/Login";
 import CreateAccount from "./Components/CreateAccount";
 
-// axios.defaults.headers.post['Access-Control-Allow-Methods'] = 'PATCH, DELETE, POST, GET, OPTIONS';
+axios.defaults.headers.post['Access-Control-Allow-Methods'] = 'PATCH, DELETE, POST, GET, OPTIONS';
 
 class App extends Component {
 

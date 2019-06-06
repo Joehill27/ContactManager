@@ -87,7 +87,7 @@ class ContactList extends Component {
       }
 
     getContacts = async() => {
-        const response = await axios.get('http://localhost:3001/api/contact/'+ this.state.userId + '/getContacts/')
+        const response = await axios.get('http://www.cop4331groupone.com/api/contact/'+ this.state.userId + '/getContacts/')
         console.log(response);
         this.setState({contacts : response.data.contacts});
     }
@@ -132,7 +132,7 @@ class ContactList extends Component {
 
     deleteContact = async(contactId) => {
         try {
-            return await axios.delete('http://localhost:3001/api/contact/' + this.state.userId + '/deleteContact/' + contactId);
+            return await axios.delete('http://www.cop4331groupone.com/api/contact/' + this.state.userId + '/deleteContact/' + contactId);
         } catch(error) {
             console.log(error);
         }
