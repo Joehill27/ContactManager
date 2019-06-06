@@ -108,7 +108,7 @@ class ContactList extends Component {
                 {/* <button onClick={this.editContactHandler()} className="Contact__Button" >Edit</button> */}
                 <button  className="Contact__Button" >Edit</button>
                 {/* <button onClick={this.deleteContactHandler(index)} className="Contact__Button" >Delete</button> */}
-                <button className="Contact__Button" >Delete</button>
+                <button className="Contact__Button" onClick={() => this.deleteContactHandler(index)} >Delete</button>
             </tr>
         )
     }
@@ -117,6 +117,7 @@ class ContactList extends Component {
         var array = [...this.state.contacts];
         array.splice(index, 1);
         this.setState({contacts: array});
+        const response = axios.get('http://localhost:3001/api/contact' + this.state.userId + 'deleteContact/' + index);
     }
 
     editContactHandler() {
@@ -157,7 +158,7 @@ class ContactList extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.contacts.map(this.renderContact)}
+                                {this.state.contacts.map(this.renderContact.bind(this))}
                             </tbody>
                         </table>
                     </div>
