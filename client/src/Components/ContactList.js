@@ -145,12 +145,9 @@ class ContactList extends Component {
 	
     render()
     {
-        const data = this.contactList();
-        
         return (
             <div className="App">
-                <div className="App__ContactPage" >              
-
+                <div className="App__ContactPage" height = "auto">
                     <div className="PageSwitcher">
                         <NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
                         <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
