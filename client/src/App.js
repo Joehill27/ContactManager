@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import './App.css';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
-// import Icon from '../src/img/contactIcon.png';
 import Icon from '../src/img/whatsapp-logo.png';
 
 import Login from "./Components/Login";
