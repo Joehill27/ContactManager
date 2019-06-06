@@ -112,7 +112,7 @@ class ContactList extends Component {
                 {/* <button onClick={this.editContactHandler()} className="Contact__Button" >Edit</button> */}
                 <button  className="Contact__Button ml-20" onClick={() => this.editContactHandler(contact._id)} >Edit</button>
                 {/* <button onClick={this.deleteContactHandler(index)} className="Contact__Button" >Delete</button> */}
-                <button className="Contact__Button ml-20" onClick={() => this.deleteContactHandler(index)} >Delete</button>
+                <button className="Contact__Button__Red ml-20" onClick={() => this.deleteContactHandler(index)} >Delete</button>
             </tr>
         )
     }
