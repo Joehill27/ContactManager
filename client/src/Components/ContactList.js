@@ -106,9 +106,9 @@ class ContactList extends Component {
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_phone}</font></td>
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_email}</font></td>
                 {/* <button onClick={this.editContactHandler()} className="Contact__Button" >Edit</button> */}
-                <button  className="Contact__Button" >Edit</button>
+                <button  className="Contact__Button ml-20" >Edit</button>
                 {/* <button onClick={this.deleteContactHandler(index)} className="Contact__Button" >Delete</button> */}
-                <button className="Contact__Button" >Delete</button>
+                <button className="Contact__Button ml-20" >Delete</button>
             </tr>
         )
     }
@@ -135,23 +135,25 @@ class ContactList extends Component {
             <div className="App">
                 <div className="App__ContactPage">              
 
-                    <label><font size="6">Contact Manager</font></label>
+                    
                     <div className="PageSwitcher">
                         <NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
                         <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
                     </div>
-
+                    
+                    <h3 className="FormTitle__mb-10"><font size="6">Contacts</font></h3>
+                    
                     <div className="FormField">
-                        <label><font size="6">Search Contacts</font></label>
-                        <input type="text" id="username" className="FormField__Input" placeholder="Enter Contact Name here" name="searchParam"
+                        <input type="text" id="username" className="FormField__Input" placeholder="Search Contacts" name="searchParam"
                             value={this.state.searchParam} onChange={this.handleChange} />
                     </div> 
+                    
                     <div className="FormField">
                         <button onClick={this.searchHandler} className="FormField__Button mr-20">Search</button>
                      </div> 
 
                     <div>
-                        <h3>Contacts List</h3>
+                        
                         <table className="table table-striped" style={{ marginTop: 20 }}>
                             <thead>
                                 <tr>

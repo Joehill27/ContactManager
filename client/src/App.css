@@ -74,6 +74,12 @@ img {
   margin-bottom: 50px;
 }
 
+.FormTitle__mb-10 {
+  color: #707C8B;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
 .FormTitle__Link {
   color: #707C8B;
   text-decoration: none;

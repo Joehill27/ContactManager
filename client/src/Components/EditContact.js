@@ -90,37 +90,40 @@ export default class EditContact extends Component {
     render() {
         return (
             <div className="App__ContactPage" height="auto">
-                <h3>Update Contact</h3> 
+                <h3 className="FormTitle"><font size="6">Edit Contact</font></h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label>Name</label>
+                        <label className="FormField__Label">Name</label>
                         <input  type="text"
-                                className="form-control"
+                                className="FormField__Input"
+                                placeholder="Enter Name"
                                 value={this.state.contact_name}
                                 onChange={this.onChangeContactName}
                         />
                     </div>
                     <div className="form-group">
-                        <label>Phone</label>
+                        <label className="FormField__Label">Phone</label>
                         <input  type="text"
-                                className="form-control"
+                                className="FormField__Input"
+                                placeholder="Enter Phone Number"
                                 value={this.state.contact_phone}
                                 onChange={this.onChangeContactPhone}
                         />
                     </div>
                     <div className="form-group">
-                        <label>Email</label>
+                        <label className="FormField__Label">Email</label>
                         <input  type="text"
-                                className="form-control"
+                                className="FormField__Input"
+                                placeholder="Enter Email"
                                 value={this.state.contact_email}
-                                onChange={this.onChangeContactPhone}
+                                onChange={this.onChangeContactEmail}
                         />
                     </div>
 
                     <br />
 
                     <div className="form-group">
-                        <input type="submit" value="Update Contact" className="FormField__Button" />
+                        <input type="submit" value="Edit Contact" className="FormField__Button" />
                     </div>
                 </form>
             </div>

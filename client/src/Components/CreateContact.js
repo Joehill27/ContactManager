@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
 // import logo from './Contacts.png';
 
@@ -72,30 +73,39 @@ export default class CreateNew extends Component {
     render() {
         return (
 			<div className="App__ContactPage" height="auto">
-                <h3>Create New Contact</h3>
+
+                    <div className="PageSwitcher">
+                        <NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
+                        <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
+                    </div>
+
+                <label className="FormTitle"><font size="6">Create New Contact</font></label>
                 <form onSubmit={this.onSubmit}>
-                    <div className="form-group"> 
-                        <label>Contact Name: </label>
+                    <div className="FormField"> 
+                        <label className="FormField__Label">Name</label>
                         <input  type="text"
-                                className="form-control"
+                                className="FormField__Input"
+                                placeholder="Enter Name"
                                 value={this.state.contact_name}
                                 onChange={this.onChangeContactName}
                                 />
                     </div>
-                    <div className="form-group">
-                        <label>Contact Phone: </label>
+                    <div className="FormField">
+                        <label className="FormField__Label">Phone</label>
                         <input 
                                 type="text" 
-                                className="form-control"
+                                className="FormField__Input"
+                                placeholder="Enter Phone Number"
                                 value={this.state.contact_phone}
                                 onChange={this.onChangeContactPhone}
                                 />
                     </div>
-                    <div className="form-group">
-                        <label>Contact Email: </label>
+                    <div className="FormField">
+                        <label className="FormField__Label">Email</label>
                         <input 
-                                type="text" 
-                                className="form-control"
+                                type="email" 
+                                className="FormField__Input"
+                                placeholder="Enter Email"
                                 value={this.state.contact_email}
                                 onChange={this.onChangeContactEmail}
                                 />
@@ -105,6 +115,7 @@ export default class CreateNew extends Component {
                         <input type="submit" value="Create Contact" className="FormField__Button" />							
 					</div>
                 </form>
+
 			</div>
 																						
         )
