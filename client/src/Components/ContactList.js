@@ -93,9 +93,13 @@ class ContactList extends Component {
 
     contactList()
     {
-        return this.state.contacts.map(function(currentContact, i){
-            return <Contact contact={currentContact} key={i} />;
-        })
+        try {
+            return this.state.contacts.map(function(currentContact, i){
+                return <Contact contact={currentContact} key={i} />;
+            })
+        } catch(error) {
+            console.log(error);
+        }
     }
 
     renderContact(contact, index)
@@ -106,25 +110,36 @@ class ContactList extends Component {
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_phone}</font></td>
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_email}</font></td>
                 {/* <button onClick={this.editContactHandler()} className="Contact__Button" >Edit</button> */}
-                <button  className="Contact__Button ml-20" onClick={() => this.editContactHandler(index)} >Edit</button>
+                <button  className="Contact__Button ml-20" onClick={() => this.editContactHandler(contact._id)} >Edit</button>
                 {/* <button onClick={this.deleteContactHandler(index)} className="Contact__Button" >Delete</button> */}
                 <button className="Contact__Button ml-20" onClick={() => this.deleteContactHandler(index)} >Delete</button>
             </tr>
         )
     }
 
-    deleteContactHandler(index) {
+    deleteContactHandler = async(index) => {
         var array = [...this.state.contacts];
+        var contactToDelete = array[index];
+        var contactId = contactToDelete._id;
+        console.log(contactToDelete);
+        console.log(contactId);
         array.splice(index, 1);
         this.setState({contacts: array});
-        console.log(this.state.userId);
-        console.log('http://localhost:3001/api/contact/' + this.state.userId + '/deleteContact/' + index);
-        const response = axios.get('http://localhost:3001/api/contact/' + this.state.userId + '/deleteContact/' + index);
+        const response = await this.deleteContact(contactId);
         console.log(response);
     }
 
-    editContactHandler(index) {
+    deleteContact = async(contactId) => {
+        try {
+            return await axios.delete('http://localhost:3001/api/contact/' + this.state.userId + '/deleteContact/' + contactId);
+        } catch(error) {
+            console.log(error);
+        }
+    }
 
+    editContactHandler(contactId) {
+        console.log(contactId);
+        localStorage.setItem('contactId', contactId);
         this.props.history.push('/editContact');
     }
 	
