@@ -87,7 +87,7 @@ class ContactList extends Component {
       }
 
     getContacts = async() => {
-        const response = await axios.get('http://www.cop4331groupone.com/api/contact/'+ this.state.userId + '/getContacts/')
+        const response = await axios.get('http://localhost:3001/api/contact/'+ this.state.userId + '/getContacts/')
         console.log(response);
         this.setState({contacts : response.data.contacts});
     }
@@ -110,15 +110,8 @@ class ContactList extends Component {
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_name}</font></td>
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_phone}</font></td>
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_email}</font></td>
-<<<<<<< HEAD
-                {/* <button onClick={this.editContactHandler()} className="Contact__Button" >Edit</button> */}
-                <td> <button  className="Contact__Button ml-20" onClick={() => this.editContactHandler(contact._id)} >Edit</button> </td>
-                {/* <button onClick={this.deleteContactHandler(index)} className="Contact__Button" >Delete</button> */}
-                <td> <button className="Contact__Button__Red ml-20" onClick={() => this.deleteContactHandler(index)} >Delete</button> </td>
-=======
                 <td><button  className="Contact__Button ml-15" onClick={() => this.editContactHandler(contact._id)} >Edit</button></td>
                 <td><button className="Contact__Button__Red ml-15" onClick={() => this.deleteContactHandler(index)} >Delete</button></td>
->>>>>>> 393df974e2ec771c25a3886cc0ce74ec95abf962
             </tr>
         )
     }
@@ -145,6 +138,7 @@ class ContactList extends Component {
 
     editContactHandler(index) {
 
+        localStorage.setItem('contactId', index);
         this.props.history.push('/editContact');
     }
 	
