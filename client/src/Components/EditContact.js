@@ -54,13 +54,14 @@ export default class EditContact extends Component {
         }
         
         console.log("56");
-        //TODO get userID from somewhere......
         var userId = localStorage.getItem('userId');
-        var contactId = this.state.contact_id;
+        var contactId = localStorage.getItem('contactId');
+        console.log(contactId);
 
         axios.put('http://localhost:3001/api/contact/' + userId + '/updateContact/' + contactId, newContact)
             .then(res => console.log(res.data));
         
+            localStorage.removeItem('contactId');
         this.setState({
             contact_name: '',
             contact_phone: '',
@@ -68,26 +69,7 @@ export default class EditContact extends Component {
         })
 
         this.props.history.push('/contactList');
-    }
-
-    componentDidMount()
-    {
-        this.updateContact();
-    }
-        updateContact = async() => {
-            console.log("78");
-            //TODO get the contactId from somewhere
-            const response = 
-                await axios.put(
-                    'http://localhost:/3001/api/contact/'+ 
-                    localStorage.getItem('userId') + "/updateContact/"+ this.state.contact_id);
-            this.setState({
-                contact_name: response.contact.contact_name,
-                contact_phone: response.contact.contact_name,
-                contact_email: response.contact.contact_email
-            })
-
-        }
+    }   
 
     render() {
         return (
