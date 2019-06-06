@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 const bcrypt = require('bcryptjs');
 
+const localHosting = '';
+
+if(process.env.NODE_ENV === 'production') {
+    localHosting = '';
+} else {
+    localHosting = 'http://localhost:3001';
+}
 class Login extends Component {
 
   constructor(props) {
@@ -31,7 +38,7 @@ class Login extends Component {
 
     const login = async() => {
       try {
-        return await axios.post('http://localhost:3001/api/user/login', this.state);
+        return await axios.post(localHosting + '/api/user/login', this.state);
       } catch (error) {
         console.log(error);
       }

@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+
+const localHosting = '';
+
+if(process.env.NODE_ENV === 'production') {
+    localHosting = '';
+} else {
+    localHosting = 'http://localhost:3001';
+}
 export default class EditContact extends Component {
 
     constructor(props)
@@ -58,10 +66,11 @@ export default class EditContact extends Component {
         var contactId = localStorage.getItem('contactId');
         console.log(contactId);
 
-        axios.put('http://localhost:3001/api/contact/' + userId + '/updateContact/' + contactId, newContact)
+        axios.put(localHosting + '/api/contact/' + userId + '/updateContact/' + contactId, newContact)
             .then(res => console.log(res.data));
         
-            localStorage.removeItem('contactId');
+        localStorage.removeItem('contactId');
+
         this.setState({
             contact_name: '',
             contact_phone: '',

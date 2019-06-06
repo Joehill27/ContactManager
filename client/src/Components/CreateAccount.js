@@ -4,6 +4,14 @@ import axios from 'axios';
 
 const bcrypt = require('bcryptjs');
 
+const localHosting = '';
+
+if(process.env.NODE_ENV === 'production') {
+    localHosting = '';
+} else {
+    localHosting = 'http://localhost:3001';
+}
+
 class CreateAccount extends Component {
 
   constructor() {
@@ -42,7 +50,7 @@ class CreateAccount extends Component {
 
     const createAccount = async() => {
       try {
-        return await axios.post('http://localhost:3001/api/user/createAccount', this.state);
+        return await axios.post(localHosting + '/api/user/createAccount', this.state);
       } catch(error) {
         console.log(error);
       }

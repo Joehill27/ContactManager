@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import { BrowserRouter as NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
 
+const localHosting = '';
+
+if(process.env.NODE_ENV === 'production') {
+    localHosting = '';
+} else {
+    localHosting = 'http://localhost:3001';
+}
+
 const Contact = props => (
     <tr>
         <td>{props.contact.contact_name}</td>
@@ -86,7 +94,7 @@ class ContactList extends Component {
       }
 
     getContacts = async() => {
-        const response = await axios.get('http://localhost:3001/api/contact/'+ this.state.userId + '/getContacts/')
+        const response = await axios.get(localHosting + '/api/contact/'+ this.state.userId + '/getContacts/')
         console.log(response);
         this.setState({contacts : response.data.contacts});
     }
@@ -131,7 +139,7 @@ class ContactList extends Component {
 
     deleteContact = async(contactId) => {
         try {
-            return await axios.delete('http://localhost:3001/api/contact/' + this.state.userId + '/deleteContact/' + contactId);
+            return await axios.delete(localHosting + '/api/contact/' + this.state.userId + '/deleteContact/' + contactId);
         } catch(error) {
             console.log(error);
         }
@@ -150,7 +158,6 @@ class ContactList extends Component {
             <div className="App">
                 <div className="App__ContactPage" >              
 
-                    
                     <div className="PageSwitcher">
                         <NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
                         <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
