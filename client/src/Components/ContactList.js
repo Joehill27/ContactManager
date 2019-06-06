@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
 
+// var localHosting = 'http://localhost:3001';
+var localHosting = '';
+
+
 const Contact = props => (
     <tr>
         <td>{props.contact.contact_name}</td>
@@ -16,8 +20,8 @@ const Contact = props => (
 );
 
 class ContactList extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             userId: localStorage.getItem('userId'),
             searchParam : '',
@@ -87,7 +91,7 @@ class ContactList extends Component {
       }
 
     getContacts = async() => {
-        const response = await axios.get('http://localhost:3001/api/contact/'+ this.state.userId + '/getContacts/')
+        const response = await axios.get('/api/contact/'+ this.state.userId + '/getContacts/')
         console.log(response);
         this.setState({contacts : response.data.contacts});
     }
@@ -132,7 +136,7 @@ class ContactList extends Component {
 
     deleteContact = async(contactId) => {
         try {
-            return await axios.delete('http://localhost:3001/api/contact/' + this.state.userId + '/deleteContact/' + contactId);
+            return await axios.delete('/api/contact/' + this.state.userId + '/deleteContact/' + contactId);
         } catch(error) {
             console.log(error);
         }

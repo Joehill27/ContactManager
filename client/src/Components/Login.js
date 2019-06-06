@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-const bcrypt = require('bcryptjs');
 
+// var localHosting = 'http://localhost:3001';
+var localHosting = '';
 class Login extends Component {
 
   constructor(props) {
@@ -31,7 +32,7 @@ class Login extends Component {
 
     const login = async() => {
       try {
-        return await axios.post('http://localhost:3001/api/user/login', this.state);
+        return await axios.post('/api/user/login', this.state);
       } catch (error) {
         console.log(error);
       }
@@ -43,8 +44,14 @@ class Login extends Component {
       if(response) {
         localStorage.setItem('userId', response.data.user._id);
         localStorage.setItem('userName', response.data.user.username);
-        this.props.history.push('/contactList');
-        window.location.reload();
+
+        try {
+          this.props.history.push('/contactList');
+          window.location.reload();
+        } catch(error) {
+            console.log(error);
+          };
+        
       } else {
         alert("Unable to login");
       }
