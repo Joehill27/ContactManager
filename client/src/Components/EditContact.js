@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
 
+
+// var localHosting = 'http://localhost:3001';
+var localHosting = '';
 export default class EditContact extends Component {
 
     constructor(props)
@@ -58,10 +61,11 @@ export default class EditContact extends Component {
         var contactId = localStorage.getItem('contactId');
         console.log(contactId);
 
-        axios.put('http://localhost:3001/api/contact/' + userId + '/updateContact/' + contactId, newContact)
+        axios.put('/api/contact/' + userId + '/updateContact/' + contactId, newContact)
             .then(res => console.log(res.data));
         
-            localStorage.removeItem('contactId');
+        localStorage.removeItem('contactId');
+
         this.setState({
             contact_name: '',
             contact_phone: '',
