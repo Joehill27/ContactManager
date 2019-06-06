@@ -57,15 +57,22 @@ export default class EditContact extends Component {
             contact_email: this.state.contact_email
         }
         
+<<<<<<< HEAD
+=======
+        console.log("56");
+        //TODO get userID from somewhere......
+>>>>>>> parent of fb4afa8... Update contact page works
         var userId = localStorage.getItem('userId');
-        var contactId = localStorage.getItem('contactId');
-        console.log(contactId);
+        var contactId = this.state.contact_id;
 
         axios.put('/api/contact/' + userId + '/updateContact/' + contactId, newContact)
             .then(res => console.log(res.data));
         
+<<<<<<< HEAD
         localStorage.removeItem('contactId');
 
+=======
+>>>>>>> parent of fb4afa8... Update contact page works
         this.setState({
             contact_name: '',
             contact_phone: '',
@@ -73,7 +80,26 @@ export default class EditContact extends Component {
         })
 
         this.props.history.push('/contactList');
-    }   
+    }
+
+    componentDidMount()
+    {
+        this.updateContact();
+    }
+        updateContact = async() => {
+            console.log("78");
+            //TODO get the contactId from somewhere
+            const response = 
+                await axios.put(
+                    'http://localhost:/3001/api/contact/'+ 
+                    localStorage.getItem('userId') + "/updateContact/"+ this.state.contact_id);
+            this.setState({
+                contact_name: response.contact.contact_name,
+                contact_phone: response.contact.contact_name,
+                contact_email: response.contact.contact_email
+            })
+
+        }
 
     render() {
         return (

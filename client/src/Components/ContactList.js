@@ -142,9 +142,8 @@ class ContactList extends Component {
         }
     }
 
-    editContactHandler(contactId) {
-        console.log(contactId);
-        localStorage.setItem('contactId', contactId);
+    editContactHandler(index) {
+
         this.props.history.push('/editContact');
     }
 	
