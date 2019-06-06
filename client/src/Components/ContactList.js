@@ -93,9 +93,13 @@ class ContactList extends Component {
 
     contactList()
     {
-        return this.state.contacts.map(function(currentContact, i){
-            return <Contact contact={currentContact} key={i} />;
-        })
+        try {
+            return this.state.contacts.map(function(currentContact, i){
+                return <Contact contact={currentContact} key={i} />;
+            })
+        } catch(error) {
+            console.log(error);
+        }
     }
 
     renderContact(contact, index)
@@ -113,11 +117,24 @@ class ContactList extends Component {
         )
     }
 
-    deleteContactHandler(index) {
+    deleteContactHandler = async(index) => {
         var array = [...this.state.contacts];
+        var contactToDelete = array[index];
+        var contactId = contactToDelete._id;
+        console.log(contactToDelete);
+        console.log(contactId);
         array.splice(index, 1);
         this.setState({contacts: array});
-        const response = axios.get('http://localhost:3001/api/contact' + this.state.userId + 'deleteContact/' + index);
+        const response = await this.deleteContact(contactId);
+        console.log(response);
+    }
+
+    deleteContact = async(contactId) => {
+        try {
+            return await axios.delete('http://localhost:3001/api/contact/' + this.state.userId + '/deleteContact/' + contactId);
+        } catch(error) {
+            console.log(error);
+        }
     }
 
     editContactHandler() {

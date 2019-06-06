@@ -87,13 +87,14 @@ router.delete('/:userId/deleteContact/:contactId', (req, res) =>{
         if(err) {
             res.status(404).send('can not find user');
         }
+        // User.Contact.pull(contactId);
         user.contacts.pull(contactId);
         user.save()
         .then(
             res.status(200).send('contact deleted')
         )
         .catch(function(err){
-            res.status(500).send(err);
+            console.log(err);
         });
     });
 });
