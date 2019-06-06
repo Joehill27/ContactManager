@@ -3,13 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 const bcrypt = require('bcryptjs');
 
+// var localHosting = 'http://localhost:3001';
 var localHosting = '';
-
-if(process.env.NODE_ENV === 'production') {
-    localHosting = '';
-} else {
-    localHosting = 'http://localhost:3001';
-}
 class Login extends Component {
 
   constructor(props) {
