@@ -52,10 +52,11 @@ export default class EditContact extends Component {
             contact_phone: this.state.contact_phone,
             contact_email: this.state.contact_email
         }
-
+        
+        console.log("56");
         //TODO get userID from somewhere......
         var userId = localStorage.getItem('userId');
-        var contactId = this.state.contact.contact_id;
+        var contactId = this.state.contact_id;
 
         axios.put('http://localhost:3001/api/contact/' + userId + '/updateContact/' + contactId, newContact)
             .then(res => console.log(res.data));
@@ -74,6 +75,7 @@ export default class EditContact extends Component {
         this.updateContact();
     }
         updateContact = async() => {
+            console.log("78");
             //TODO get the contactId from somewhere
             const response = 
                 await axios.put(
@@ -90,37 +92,40 @@ export default class EditContact extends Component {
     render() {
         return (
             <div className="App__ContactPage" height="auto">
-                <h3>Update Contact</h3> 
-                <form onSubmit={this.onSubmit}>
+                <h3 className="FormTitle"><font size="6">Edit Contact</font></h3>
+                <form onSubmit={this.onSubmit.bind(this)}>
                     <div className="form-group">
-                        <label>Name</label>
+                        <label className="FormField__Label">Name</label>
                         <input  type="text"
-                                className="form-control"
+                                className="FormField__Input"
+                                placeholder="Enter Name"
                                 value={this.state.contact_name}
                                 onChange={this.onChangeContactName}
                         />
                     </div>
                     <div className="form-group">
-                        <label>Phone</label>
+                        <label className="FormField__Label">Phone</label>
                         <input  type="text"
-                                className="form-control"
+                                className="FormField__Input"
+                                placeholder="Enter Phone Number"
                                 value={this.state.contact_phone}
                                 onChange={this.onChangeContactPhone}
                         />
                     </div>
                     <div className="form-group">
-                        <label>Email</label>
+                        <label className="FormField__Label">Email</label>
                         <input  type="text"
-                                className="form-control"
+                                className="FormField__Input"
+                                placeholder="Enter Email"
                                 value={this.state.contact_email}
-                                onChange={this.onChangeContactPhone}
+                                onChange={this.onChangeContactEmail}
                         />
                     </div>
 
                     <br />
 
                     <div className="form-group">
-                        <input type="submit" value="Update Contact" className="FormField__Button" />
+                        <input type="submit" value="Edit Contact" className="FormField__Button" />
                     </div>
                 </form>
             </div>
