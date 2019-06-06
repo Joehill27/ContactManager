@@ -82,7 +82,7 @@ export default class EditContact extends Component {
                     <NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
                     <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
                 </div>
-                <h3 className="FormTitle"><font size="6">Edit Contact</font></h3>
+                <h3 className="FormTitle__White"><font size="6">Edit Contact</font></h3>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <div className="form-group">
                         <label className="FormField__Label">Name</label>
@@ -90,8 +90,7 @@ export default class EditContact extends Component {
                                 className="FormField__Input"
                                 placeholder="Enter Name"
                                 value={this.state.contact_name}
-                                onChange={this.onChangeContactName}
-                        />
+                                onChange={this.onChangeContactName}/>
                     </div>
                     <div className="form-group">
                         <label className="FormField__Label">Phone</label>
@@ -99,8 +98,7 @@ export default class EditContact extends Component {
                                 className="FormField__Input"
                                 placeholder="Enter Phone Number"
                                 value={this.state.contact_phone}
-                                onChange={this.onChangeContactPhone}
-                        />
+                                onChange={this.onChangeContactPhone}/>
                     </div>
                     <div className="form-group">
                         <label className="FormField__Label">Email</label>
@@ -108,11 +106,10 @@ export default class EditContact extends Component {
                                 className="FormField__Input"
                                 placeholder="Enter Email"
                                 value={this.state.contact_email}
-                                onChange={this.onChangeContactEmail}
-                        />
+                                onChange={this.onChangeContactEmail}/>
                     </div>
 
-                    <br />
+                    <br/>
 
                     <div className="form-group">
                         <input type="submit" value="Edit Contact" className="FormField__Button" />
