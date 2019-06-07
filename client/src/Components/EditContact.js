@@ -60,7 +60,7 @@ export default class EditContact extends Component {
         var userId = localStorage.getItem('userId');
         var contactId = localStorage.getItem('contactId');;
 
-        axios.put('http://localhost:3001/api/contact/' + userId + '/updateContact/' + contactId, newContact)
+        axios.put('/api/contact/' + userId + '/updateContact/' + contactId, newContact)
             .then(res => console.log(res.data));
         
         localStorage.removeItem('contactId');
