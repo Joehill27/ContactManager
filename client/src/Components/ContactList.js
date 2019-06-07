@@ -87,7 +87,7 @@ class ContactList extends Component {
       }
 
     getContacts = async() => {
-        const response = await axios.get('http://localhost:3001/api/contact/'+ this.state.userId + '/getContacts/')
+        const response = await axios.get('/api/contact/'+ this.state.userId + '/getContacts/')
         console.log(response);
         this.setState({contacts : response.data.contacts});
     }
