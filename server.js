@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const users = require('./routes/api/user');
 const contacts = require('./routes/api/contact');
 const cors = require('cors');
+const path = require("path")
 
 const app = express();
 app.use(bodyParser.json());
