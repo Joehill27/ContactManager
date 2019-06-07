@@ -130,7 +130,7 @@ class ContactList extends Component {
 
     deleteContact = async(contactId) => {
         try {
-            return await axios.delete('http://localhost:3001/api/contact/' + this.state.userId + '/deleteContact/' + contactId);
+            return await axios.delete('/api/contact/' + this.state.userId + '/deleteContact/' + contactId);
         } catch(error) {
             console.log(error);
         }
