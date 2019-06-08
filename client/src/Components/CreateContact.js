@@ -5,13 +5,10 @@ import axios from 'axios';
 
 // console.log(logo);
 
-<<<<<<< HEAD
-=======
 // var localHosting = 'http://localhost:3001';
 axios.defaults.headers.post['Access-Control-Allow-Methods'] = 'PATCH, DELETE, POST, GET, OPTIONS';
 var localHosting = '';
 
->>>>>>> fe449d9a2a32209ffe2c12e52cce826bd58e55cd
 export default class CreateNew extends Component {
     constructor(props)
     {
