@@ -15,6 +15,7 @@ class CreateAccount extends Component {
       email: ''
     };
 
+    localStorage.setItem('userId', -1);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }

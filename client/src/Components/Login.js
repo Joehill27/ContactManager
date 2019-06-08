@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 const bcrypt = require('bcryptjs');
 
+axios.defaults.headers.post['Access-Control-Allow-Methods'] = 'PATCH, DELETE, POST, GET, OPTIONS';
+
 class Login extends Component {
 
   constructor(props) {
@@ -14,6 +16,7 @@ class Login extends Component {
       loggedIn: 'false'
     };
 
+    localStorage.setItem('userId', -1);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -28,7 +31,7 @@ class Login extends Component {
   }
 
   render() {
-
+    // localStorage.setItem('userId', 0);
     const login = async() => {
       try {
         return await axios.post('http://localhost:3001/api/user/login', this.state);

@@ -5,6 +5,13 @@ import axios from 'axios';
 
 // console.log(logo);
 
+<<<<<<< HEAD
+=======
+// var localHosting = 'http://localhost:3001';
+axios.defaults.headers.post['Access-Control-Allow-Methods'] = 'PATCH, DELETE, POST, GET, OPTIONS';
+var localHosting = '';
+
+>>>>>>> fe449d9a2a32209ffe2c12e52cce826bd58e55cd
 export default class CreateNew extends Component {
     constructor(props)
     {
@@ -77,6 +84,7 @@ export default class CreateNew extends Component {
                     <div className="PageSwitcher">
                         <NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
                         <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
+                        <NavLink exact to="/" activeClassName="PageSwitcher_Item--Active" className="PageSwitcher__Item">Logout</NavLink>
                     </div>
 
                 <label className="FormTitle__White"><font size="6">Create New Contact</font></label>

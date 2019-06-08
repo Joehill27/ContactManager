@@ -18,12 +18,25 @@ const Contact = props => (
 class ContactList extends Component {
     constructor() {
         super();
-        this.state = {
-            userId: localStorage.getItem('userId'),
-            searchParam : '',
-            contacts: [],
-            filtered: [] 
-        };
+        if(localStorage.getItem('userId') == -1)
+        {
+            alert("Attempting to access a page without valid credentials.\nReturning to login page. Please log in to a valid account.");
+            this.state = {
+                userId: localStorage.getItem('userId'),
+                searchParam : '',
+                contacts: [],
+                filtered: [] 
+            };
+        }
+        else
+        {
+            this.state = {
+                userId: localStorage.getItem('userId'),
+                searchParam : '',
+                contacts: [],
+                filtered: [] 
+            };
+        }
 
         this.handleChange = this.handleChange.bind(this);
         this.searchHandler = this.searchHandler.bind(this);
@@ -33,6 +46,11 @@ class ContactList extends Component {
 
     componentDidMount() {
         // this.props.history.push('/contactList');
+        if(this.state.userId == -1)
+        {
+            this.props.history.push('/');
+            return;
+        }
         this.getContacts();
     }
 
@@ -48,9 +66,6 @@ class ContactList extends Component {
         currentContacts = this.state.contacts;
         let filteredContacts = [];
         let searchTerm = this.state.searchParam.toLowerCase();
-
-        // console.log(currentContacts);
-
         if(searchTerm !== "") {
             currentContacts.forEach(function(arrayItem) {
                 // console.log(arrayItem);
@@ -109,10 +124,8 @@ class ContactList extends Component {
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_name}</font></td>
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_phone}</font></td>
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_email}</font></td>
-                {/* <button onClick={this.editContactHandler()} className="Contact__Button" >Edit</button> */}
-                <button  className="Contact__Button ml-20" onClick={() => this.editContactHandler(contact._id)} >Edit</button>
-                {/* <button onClick={this.deleteContactHandler(index)} className="Contact__Button" >Delete</button> */}
-                <button className="Contact__Button__Red ml-20" onClick={() => this.deleteContactHandler(index)} >Delete</button>
+                <td><button  className="Contact__Button ml-15" onClick={() => this.editContactHandler(contact._id)} >Edit</button></td>
+                <td><button className="Contact__Button__Red ml-15" onClick={() => this.deleteContactHandler(index)} >Delete</button></td>
             </tr>
         )
     }
@@ -137,9 +150,9 @@ class ContactList extends Component {
         }
     }
 
-    editContactHandler(contactId) {
-        console.log(contactId);
-        localStorage.setItem('contactId', contactId);
+    editContactHandler(index) {
+
+        localStorage.setItem('contactId', index);
         this.props.history.push('/editContact');
     }
 	
@@ -151,6 +164,7 @@ class ContactList extends Component {
                     <div className="PageSwitcher">
                         <NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
                         <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
+                        <NavLink exact to="/" activeClassName="PageSwitcher_Item--Active" className="PageSwitcher__Item">Logout</NavLink>
                     </div>
 
                     <h3 className="FormTitle__mb-10"><font size="6">Contacts</font></h3>

@@ -55,8 +55,7 @@ export default class EditContact extends Component {
         }
         
         var userId = localStorage.getItem('userId');
-        var contactId = localStorage.getItem('contactId');
-        console.log(contactId);
+        var contactId = localStorage.getItem('contactId');;
 
         axios.put('http://localhost:3001/api/contact/' + userId + '/updateContact/' + contactId, newContact)
             .then(res => console.log(res.data));
@@ -69,7 +68,26 @@ export default class EditContact extends Component {
         })
 
         this.props.history.push('/contactList');
-    }   
+    }
+
+    componentDidMount()
+    {
+        this.updateContact();
+    }
+        updateContact = async() => {
+            console.log("78");
+            //TODO get the contactId from somewhere
+            const response = 
+                await axios.put(
+                    'http://localhost:/3001/api/contact/'+ 
+                    localStorage.getItem('userId') + "/updateContact/"+ this.state.contact_id);
+            this.setState({
+                contact_name: response.contact.contact_name,
+                contact_phone: response.contact.contact_name,
+                contact_email: response.contact.contact_email
+            })
+
+        }
 
     render() {
         return (
@@ -77,6 +95,7 @@ export default class EditContact extends Component {
                 <div className="PageSwitcher">
                     <NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
                     <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
+                    <NavLink exact to="/" activeClassName="PageSwitcher_Item--Active" className="PageSwitcher__Item">Logout</NavLink>
                 </div>
                 <h3 className="FormTitle"><font size="6">Edit Contact</font></h3>
                 <form onSubmit={this.onSubmit.bind(this)}>
