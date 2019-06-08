@@ -12,7 +12,7 @@ export default class EditContact extends Component {
         {
             contact_name: '',
             contact_phone: '',
-            contact_email: '',
+            contact_email: this.state.contact_email,
             contact_id: ''
         }
 

@@ -19,7 +19,7 @@ class App extends Component {
       <div className="App">
 
         <div className="App__Aside">
-        <img src={Icon} width='40%' height='auto'/>
+        <img className="Center" src={Icon} width='40%' height='auto'/>
         </div>
 
         <div className="App__Form">
