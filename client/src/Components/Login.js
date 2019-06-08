@@ -16,6 +16,7 @@ class Login extends Component {
       loggedIn: 'false'
     };
 
+    localStorage.setItem('userId', -1);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -30,7 +31,7 @@ class Login extends Component {
   }
 
   render() {
-
+    // localStorage.setItem('userId', 0);
     const login = async() => {
       try {
         return await axios.post('/api/user/login', this.state);

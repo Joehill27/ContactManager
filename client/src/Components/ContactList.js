@@ -18,12 +18,25 @@ const Contact = props => (
 class ContactList extends Component {
     constructor() {
         super();
-        this.state = {
-            userId: localStorage.getItem('userId'),
-            searchParam : '',
-            contacts: [],
-            filtered: [] 
-        };
+        if(localStorage.getItem('userId') == -1)
+        {
+            alert("Attempting to access a page without valid credentials.\nReturning to login page. Please log in to a valid account.");
+            this.state = {
+                userId: localStorage.getItem('userId'),
+                searchParam : '',
+                contacts: [],
+                filtered: [] 
+            };
+        }
+        else
+        {
+            this.state = {
+                userId: localStorage.getItem('userId'),
+                searchParam : '',
+                contacts: [],
+                filtered: [] 
+            };
+        }
 
         this.handleChange = this.handleChange.bind(this);
         this.searchHandler = this.searchHandler.bind(this);
@@ -34,6 +47,11 @@ class ContactList extends Component {
 
     componentDidMount() {
         // this.props.history.push('/contactList');
+        if(this.state.userId == -1)
+        {
+            this.props.history.push('/');
+            return;
+        }
         this.getContacts();
     }
 
@@ -49,9 +67,6 @@ class ContactList extends Component {
         currentContacts = this.state.contacts;
         let filteredContacts = [];
         let searchTerm = this.state.searchParam.toLowerCase();
-
-        // console.log(currentContacts);
-
         if(searchTerm !== "") {
             currentContacts.forEach(function(arrayItem) {
                 // console.log(arrayItem);
@@ -150,6 +165,7 @@ class ContactList extends Component {
                     <div className="PageSwitcher">
                         <NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
                         <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
+                        <NavLink exact to="/" activeClassName="PageSwitcher_Item--Active" className="PageSwitcher__Item">Logout</NavLink>
                     </div>
 
                     <h3 className="FormTitle__mb-10"><font size="6">Contacts</font></h3>
