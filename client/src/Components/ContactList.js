@@ -164,7 +164,7 @@ class ContactList extends Component {
                     <div className="PageSwitcher">
                         <NavLink to="/contactList" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Contacts</NavLink>		
                         <NavLink exact to="/createContact" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Create New Contact</NavLink>
-                        <NavLink exact to="/" activeClassName="PageSwitcher_Item--Active" className="PageSwitcher__Item">Logout</NavLink>
+                        <NavLink exact to="/" className="PageSwitcher__Item--Logout">Logout</NavLink>
                     </div>
 
                     <h3 className="FormTitle__mb-10"><font size="6">Contacts</font></h3>

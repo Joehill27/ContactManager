@@ -55,6 +55,20 @@ img {
   color: white;
 }
 
+.PageSwitcher__Item--Logout {
+  background-color: rgb(255, 80, 80);
+  color: white;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: .9em;
+  border: none;
+  outline: none;
+  display: inline-block;
+  text-decoration: none;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
 .PageSwitcher__Item:first-child {
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
@@ -75,7 +89,7 @@ img {
 }
 
 .FormTitle__mb-10 {
-  color: #707C8B;
+  color: rgb(255, 255, 255);
   font-weight: 300;
   margin-bottom: 10px;
 }
@@ -114,7 +128,7 @@ img {
   border: none;
   color: white;
   outline: none;
-  border-bottom: 1px solid #445366;
+  border-bottom: 1px solid #ffffff;
   font-size: 1em;
   font-weight: 300;
   padding-bottom: 10px;
@@ -142,9 +156,9 @@ img {
   border: none;
   outline: none;
   border-radius: 25px;
-  /* padding: 15px 70px; */
-  font-size: 1.2em;
-  font-weight: 500;
+  padding: 5px 20px;
+  font-size: .9em;
+  font-weight: 400;
 }
 
 .Contact__Button__Red {
@@ -153,9 +167,9 @@ img {
   border: none;
   outline: none;
   border-radius: 25px;
-  /* padding: 15px 70px; */
-  font-size: 1.2em;
-  font-weight: 500;
+  padding: 5px 25px;
+  font-size: .9em;
+  font-weight: 400;
 }
 
 .FormField__Link {
