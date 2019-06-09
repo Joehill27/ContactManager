@@ -17,6 +17,19 @@ router.post('/login', (req, res) => {
     });
 });
 
+router.get('/get', (req, res) => {
+    let name = req.body.username;
+    console.log("22");
+    console.log(name);
+    User.findOne({username: name}).exec(function(err, user) {
+        if(!user) {
+            res.status(404).send({error : "user does not exist"});
+        } else {
+            res.status(200).send({'user': user});
+        }
+    })
+});
+
 //Creates an account with given info
 router.post('/createAccount', (req, res) => {
     let username = req.body.username;

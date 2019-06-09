@@ -46,6 +46,7 @@ class ContactList extends Component {
 
     componentDidMount() {
         // this.props.history.push('/contactList');
+        
         if(this.state.userId == -1)
         {
             this.props.history.push('/');

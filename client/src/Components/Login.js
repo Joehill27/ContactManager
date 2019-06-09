@@ -33,8 +33,19 @@ class Login extends Component {
   render() {
     // localStorage.setItem('userId', 0);
     const login = async() => {
+      var blank = {
+        username: this.state.username,
+        password: '',
+        loggedIn: this.state.loggedIn
+      };
       try {
-        return await axios.post('http://localhost:3001/api/user/login', this.state);
+        var res = await axios.post('http://localhost:3001/api/user/login', blank);
+        if(bcrypt.compareSync(this.state.password, res.data.user.password))
+        {
+          return res;
+        } else {
+          alert("Invalid Username/Password");
+        }
       } catch (error) {
         console.log(error);
       }
@@ -48,10 +59,7 @@ class Login extends Component {
         localStorage.setItem('userName', response.data.user.username);
         this.props.history.push('/contactList');
         window.location.reload();
-      } else {
-        alert("Unable to login");
       }
-      
   }
 
 

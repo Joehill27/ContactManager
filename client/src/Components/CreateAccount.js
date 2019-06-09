@@ -31,19 +31,31 @@ class CreateAccount extends Component {
   }
 
   handleSubmit(e) {
-    
-    
-
-    // axios.post('http://localhost:3001/api/user/createAccount', this.state)
-    //   .then(res => console.log(res));
+    bcrypt.hash(this.state.password, 10, function(err, hash) {
+      console.log(hash);
+      var hashedInfo = {
+        username: this.state.username,
+        password: hash,
+        email: this.state.email
+      };
+      axios.post('http://localhost:3001/api/user/createAccount', hashedInfo)
+      .then(res => console.log(res));
+    });
   }
 
 
   render() {
 
     const createAccount = async() => {
+      let hash = bcrypt.hashSync(this.state.password, 10);
+      var hashedInfo = {
+        username: this.state.username,
+        password: hash,
+        email: this.state.email
+      };
       try {
-        return await axios.post('http://localhost:3001/api/user/createAccount', this.state);
+        console.log(hashedInfo);
+        return axios.post('http://localhost:3001/api/user/createAccount', hashedInfo);
       } catch(error) {
         console.log(error);
       }
@@ -56,6 +68,7 @@ class CreateAccount extends Component {
         localStorage.setItem('userId', response.data.user._id);
         localStorage.setItem('userName', response.data.user.username);
         this.props.history.push('/contactList');
+        window.location.reload();
       } else {
         alert("Unable to create account");
       }
