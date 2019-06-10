@@ -8,7 +8,7 @@ const User = require('../../models/User');
 router.post('/login', (req, res) => {
     let name = req.body.username;
     let password = req.body.password;
-    User.findOne({username: name}).select(-'contacts').exec(function(err, user) {
+    User.findOne({username: name}).select('-contacts').exec(function(err, user) {
     if(!user) {
         res.status(404).send({error : "user does not exist"});
     } else{
