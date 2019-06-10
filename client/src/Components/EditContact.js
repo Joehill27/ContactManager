@@ -10,10 +10,10 @@ export default class EditContact extends Component {
 
         this.state =
         {
-            contact_name: '',
-            contact_phone: '',
-            contact_email: '',
-            contact_id: ''
+            contact_name: localStorage.getItem('contactName'),
+            contact_phone: localStorage.getItem('contactPhone'),
+            contact_email: localStorage.getItem('contactEmail'),
+            contact_id: localStorage.getItem('contactId')
         }
 
         this.onChangeContactName = this.onChangeContactName.bind(this);
@@ -55,18 +55,22 @@ export default class EditContact extends Component {
         }
         
         var userId = localStorage.getItem('userId');
-        var contactId = localStorage.getItem('contactId');
-        console.log(contactId);
 
-        axios.put('http://localhost:3001/api/contact/' + userId + '/updateContact/' + contactId, newContact)
+        axios.put('http://localhost:3001/api/contact/' + userId + '/updateContact/' + this.state.contact_id, newContact)
             .then(res => console.log(res.data));
         
-            localStorage.removeItem('contactId');
+        
+        
         this.setState({
             contact_name: '',
             contact_phone: '',
             contact_email: ''
         })
+
+        localStorage.removeItem('contactName');
+        localStorage.removeItem('contactPhone');
+        localStorage.removeItem('contactEmail');
+        localStorage.removeItem('contactId');
 
         this.props.history.push('/contactList');
     }   

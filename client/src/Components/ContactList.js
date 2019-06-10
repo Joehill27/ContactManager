@@ -125,7 +125,7 @@ class ContactList extends Component {
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_name}</font></td>
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_phone}</font></td>
                 <td color="#0FF000"><font color="#FFFFFF">{contact.contact_email}</font></td>
-                <td><button  className="Contact__Button ml-15" onClick={() => this.editContactHandler(contact._id)} >Edit</button></td>
+                <td><button  className="Contact__Button ml-15" onClick={() => this.editContactHandler(contact)} >Edit</button></td>
                 <td><button className="Contact__Button__Red ml-15" onClick={() => this.deleteContactHandler(index)} >Delete</button></td>
             </tr>
         )
@@ -151,9 +151,13 @@ class ContactList extends Component {
         }
     }
 
-    editContactHandler(index) {
+    editContactHandler(contact) {
 
-        localStorage.setItem('contactId', index);
+        localStorage.setItem('contactId', contact._id);
+        localStorage.setItem('contactName', contact.contact_name);
+        localStorage.setItem('contactPhone', contact.contact_phone);
+        localStorage.setItem('contactEmail', contact.contact_email);
+
         this.props.history.push('/editContact');
     }
 	
