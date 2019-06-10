@@ -56,7 +56,6 @@ class Login extends Component {
       console.log(response);
       if(response) {
         localStorage.setItem('userId', response.data.user._id);
-        localStorage.setItem('userName', response.data.user.username);
         this.props.history.push('/contactList');
         window.location.reload();
       }
