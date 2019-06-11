@@ -20,6 +20,12 @@ export default class EditContact extends Component {
         this.onChangeContactPhone = this.onChangeContactPhone.bind(this);
         this.onChangeContactEmail = this.onChangeContactEmail.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        if(this.state.contact_id === '')
+        {
+            alert("Attempting to access a page without valid credentials.\nReturning to login page. Please log in to a valid account.");
+            this.props.history.push('/');
+            return;
+        }
     }
 
     onChangeContactName = e => {
@@ -48,6 +54,14 @@ export default class EditContact extends Component {
         console.log(`Contact Phone: ${this.state.contact_phone}`);
         console.log(`Contact Email: ${this.state.contact_email}`);
 
+        if(this.state.contact_name === '' &&
+            this.state.contact_phone === '' &&
+            this.state.contact_email === '')
+            {
+                alert("Please fill in at least one field");
+                return;
+            }
+
         const newContact = {
             contact_name: this.state.contact_name,
             contact_phone: this.state.contact_phone,
@@ -73,6 +87,7 @@ export default class EditContact extends Component {
         localStorage.removeItem('contactId');
 
         this.props.history.push('/contactList');
+        window.location.reload();
     }   
 
     render() {

@@ -19,34 +19,23 @@ class ContactList extends Component {
     constructor() {
         super();
         if(localStorage.getItem('userId') == -1)
-        {
             alert("Attempting to access a page without valid credentials.\nReturning to login page. Please log in to a valid account.");
-            this.state = {
-                userId: localStorage.getItem('userId'),
-                searchParam : '',
-                contacts: [],
-                filtered: [] 
-            };
-        }
-        else
-        {
-            this.state = {
-                userId: localStorage.getItem('userId'),
-                searchParam : '',
-                contacts: [],
-                filtered: [] 
-            };
-        }
+        
+        this.state = {
+            userId: localStorage.getItem('userId'),
+            searchParam : '',
+            contacts: [],
+            filtered: [] 
+        };
 
         this.handleChange = this.handleChange.bind(this);
         this.searchHandler = this.searchHandler.bind(this);
+        this.refresh = this.refresh.bind(this);
         this.editContactHandler = this.editContactHandler.bind(this);
         this.deleteContactHandler = this.deleteContactHandler.bind(this);
     }
 
     componentDidMount() {
-        // this.props.history.push('/contactList');
-        
         if(this.state.userId == -1)
         {
             this.props.history.push('/');
@@ -87,9 +76,11 @@ class ContactList extends Component {
         else {
             alert('Search term is empty!');
         }
-
     }
 
+    refresh() {
+        window.location.reload();
+    }
 
     handleChange(e) {
         let target = e.target;
@@ -181,6 +172,7 @@ class ContactList extends Component {
                     
                     <div className="FormField">
                         <button onClick={this.searchHandler} className="FormField__Button mr-20">Search</button>
+                        <button onClick={this.refresh} className="FormField__Button mr-20">Back to Table</button>
                      </div> 
 
                     <div>

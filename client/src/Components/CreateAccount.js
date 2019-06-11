@@ -16,6 +16,10 @@ class CreateAccount extends Component {
     };
 
     localStorage.setItem('userId', -1);
+    localStorage.setItem('contactId', '');
+    localStorage.setItem('contactName', '');
+    localStorage.setItem('contactPhone', '');
+    localStorage.setItem('contactEmail', '');
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }

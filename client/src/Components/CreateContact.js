@@ -48,6 +48,24 @@ export default class CreateNew extends Component {
     onSubmit = e => {
         e.preventDefault();
 
+        //TODO get userID from somewhere......
+        var userId = localStorage.getItem('userId');
+        
+        if(userId === -1)
+        {
+            alert("What are you adding a contact to?\nReturning to login page. Please log in to a valid account.");
+            this.props.history.push('/');
+            return;
+        }
+
+        if(this.state.contact_name === '' &&
+            this.state.contact_phone === '' &&
+            this.state.contact_email === '')
+            {
+                alert("Please fill in at least one field");
+                return;
+            }
+            
         console.log(`Form submitted:`);
         console.log(`Contact Name: ${this.state.contact_name}`);
         console.log(`Contact Phone: ${this.state.contact_phone}`);
@@ -59,8 +77,7 @@ export default class CreateNew extends Component {
             contact_email: this.state.contact_email
         }
 
-        //TODO get userID from somewhere......
-        var userId = localStorage.getItem('userId');
+        
 
         axios.post('/api/contact/' + userId + '/addContact/', newContact)
             .then(res => console.log(res.data));
@@ -72,6 +89,7 @@ export default class CreateNew extends Component {
         })
 
         this.props.history.push('/contactList');
+        window.location.reload();
     }
 
     render() {
