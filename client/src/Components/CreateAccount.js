@@ -38,7 +38,7 @@ class CreateAccount extends Component {
         password: hash,
         email: this.state.email
       };
-      axios.post('http://localhost:3001/api/user/createAccount', hashedInfo)
+      axios.post('/api/user/createAccount', hashedInfo)
       .then(res => console.log(res));
     });
   }
@@ -55,7 +55,7 @@ class CreateAccount extends Component {
       };
       try {
         console.log(hashedInfo);
-        return axios.post('http://localhost:3001/api/user/createAccount', hashedInfo);
+        return axios.post('/api/user/createAccount', hashedInfo);
       } catch(error) {
         console.log(error);
       }

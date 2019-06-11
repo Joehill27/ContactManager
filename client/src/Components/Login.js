@@ -39,7 +39,7 @@ class Login extends Component {
         loggedIn: this.state.loggedIn
       };
       try {
-        var res = await axios.post('http://localhost:3001/api/user/login', blank);
+        var res = await axios.post('/api/user/login', blank);
         if(bcrypt.compareSync(this.state.password, res.data.user.password))
         {
           return res;

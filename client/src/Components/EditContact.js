@@ -56,7 +56,7 @@ export default class EditContact extends Component {
         
         var userId = localStorage.getItem('userId');
 
-        axios.put('http://localhost:3001/api/contact/' + userId + '/updateContact/' + this.state.contact_id, newContact)
+        axios.put('/api/contact/' + userId + '/updateContact/' + this.state.contact_id, newContact)
             .then(res => console.log(res.data));
         
         

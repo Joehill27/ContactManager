@@ -62,7 +62,7 @@ export default class CreateNew extends Component {
         //TODO get userID from somewhere......
         var userId = localStorage.getItem('userId');
 
-        axios.post('http://localhost:3001/api/contact/' + userId + '/addContact/', newContact)
+        axios.post('/api/contact/' + userId + '/addContact/', newContact)
             .then(res => console.log(res.data));
         
         this.setState({
