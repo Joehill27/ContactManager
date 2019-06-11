@@ -63,8 +63,9 @@ class ContactList extends Component {
                 var phone = arrayItem.contact_phone.toString();
                 var email = arrayItem.contact_email.toString();
                 name = name.toLowerCase();
+                email = email.toLowerCase();
                 // console.log("Here is the name: "+name);
-                if(name.includes(searchTerm.toLowerCase()) || phone.includes(searchTerm.toLowerCase()) || email.includes(searchTerm.toLowerCase())) {
+                if(name.includes(searchTerm) || phone.includes(searchTerm) || email.includes(searchTerm)) {
                     filteredContacts.push(arrayItem);
                     // console.log(name);
                 }
@@ -174,7 +175,7 @@ class ContactList extends Component {
                     
                     <div className="FormField">
                         <button onClick={this.searchHandler} className="FormField__Button mr-20">Search</button>
-                        <button onClick={this.refresh} className="FormField__Button mr-20">Back to Table</button>
+                        <button onClick={this.refresh} className="FormField__Button mr-20">All Contacts</button>
                      </div> 
 
                     <div>
