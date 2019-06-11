@@ -60,9 +60,11 @@ class ContactList extends Component {
             currentContacts.forEach(function(arrayItem) {
                 // console.log(arrayItem);
                 var name = arrayItem.contact_name.toString();
+                var phone = arrayItem.contact_phone.toString();
+                var email = arrayItem.contact_email.toString();
                 name = name.toLowerCase();
                 // console.log("Here is the name: "+name);
-                if(name.includes(searchTerm.toLowerCase())) {
+                if(name.includes(searchTerm.toLowerCase()) || phone.includes(searchTerm.toLowerCase()) || email.includes(searchTerm.toLowerCase())) {
                     filteredContacts.push(arrayItem);
                     // console.log(name);
                 }
