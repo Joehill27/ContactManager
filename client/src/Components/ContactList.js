@@ -61,10 +61,19 @@ class ContactList extends Component {
                 // console.log(arrayItem);
                 var name = arrayItem.contact_name.toString();
                 name = name.toLowerCase();
+                
+                var email = arrayItem.contact_email.toString();
+                email = email.toLowerCase();
+                
+                var number = arrayItem.contact_phone.toString();
                 // console.log("Here is the name: "+name);
                 if(name.includes(searchTerm.toLowerCase())) {
                     filteredContacts.push(arrayItem);
                     // console.log(name);
+                } else if(email.includes(searchTerm.toLowerCase())) {
+                    filteredContacts.push(arrayItem);
+                } else if(number.includes(searchTerm)) {
+                    filteredContacts.push(arrayItem);
                 }
             });
             // console.log(filteredContacts);
