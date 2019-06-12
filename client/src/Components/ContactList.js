@@ -63,11 +63,23 @@ class ContactList extends Component {
                 var phone = arrayItem.contact_phone.toString();
                 var email = arrayItem.contact_email.toString();
                 name = name.toLowerCase();
+<<<<<<< HEAD
                 email = email.toLowerCase();
+=======
+                
+                var email = arrayItem.contact_email.toString();
+                email = email.toLowerCase();
+                
+                var number = arrayItem.contact_phone.toString();
+>>>>>>> dfe5b8804b51c3395fe6a850d69a3600a406487a
                 // console.log("Here is the name: "+name);
                 if(name.includes(searchTerm) || phone.includes(searchTerm) || email.includes(searchTerm)) {
                     filteredContacts.push(arrayItem);
                     // console.log(name);
+                } else if(email.includes(searchTerm.toLowerCase())) {
+                    filteredContacts.push(arrayItem);
+                } else if(number.includes(searchTerm)) {
+                    filteredContacts.push(arrayItem);
                 }
             });
             // console.log(filteredContacts);
